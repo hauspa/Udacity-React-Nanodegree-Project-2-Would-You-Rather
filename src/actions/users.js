@@ -1,5 +1,4 @@
 const RECEIVE_USERS         = 'RECEIVE_USERS'
-const SET_CURRENTUSER       = 'SET_CURRENTUSER'
 const UPDATE_USER_QUESTIONS = 'UPDATE_USER_QUESTIONS'
 const UPDATE_USER_ANSWERS   = 'UPDATE_USER_ANSWERS'
 
@@ -10,18 +9,11 @@ export function receiveUsers(users) {
   }
 }
 
-export function setCurrentUser(id){
-  return {
-    type: SET_CURRENTUSER,
-    id,
-  }
-}
-
 export function updateUserAnswers(id, answer){
   return {
     type: UPDATE_USER_ANSWERS,
     id,
-    answer, // { 'question ID' : 'Option' }
+    answer, // { "question ID" : "Option" }
   }
 }
 

@@ -16,10 +16,11 @@ export function addQuestion(question) {
   }
 }
 
-export function updateQuestion(id, option) {
+export function updateQuestion(questionId, option, userId) {
   return {
     type: UPDATE_QUESTION,
-    id,
+    questionId,
     option,
+    userId,
   }
 }
