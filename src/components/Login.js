@@ -6,19 +6,28 @@ class Login extends Component {
   render() {
     console.log('LOGIN')
     console.log(this.props)
+    let { authedUser, users } = this.props
     return(
       <div>
-        <h1>LOGIN</h1>
-        <p>authedUser: {this.props.authedUser || "DUDE"}</p>
+        <h3>LOGIN</h3>
+        <p>authedUser: {authedUser || "DUDE"}</p>
+        <ul>
+          {
+            Object.values(users).map((user) => (
+              <li key={user.id}>{user.name}</li>
+            ))
+          }
+        </ul>
       </div>
     )
   }
 }
 
-function mapStateToProps({ authedUser }) {
+function mapStateToProps({ authedUser, users }) {
   return {
     authedUser,
+    users,
   }
 }
 
-export default connect()(Login)
+export default connect(mapStateToProps)(Login)

@@ -59,11 +59,15 @@ class App extends Component {
     console.log('DUDE')
     console.log(this.props)
     return (
-      this.props.loading === true
-        ? <LoadingBar />
+      <div>
+      <LoadingBar />
+      {this.props.loading === true
+        ? null
         : this.props.loggedIn === true
           ? <Home />
           : <Login />
+      }
+      </div>
         // (
         //     <div className="App">
         //       <header className="App-header">
@@ -87,7 +91,9 @@ class App extends Component {
         //           <button onClick={this.logTesting}>LOG</button>
         //         </header>
         //     </div>
-        // )
+        // ) 
+        // TODO: add 404 page for cases when website not available
+        // TODO: go to Login, when users went on website using browser search bar
     )
   }
 }
