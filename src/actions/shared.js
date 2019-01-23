@@ -8,6 +8,7 @@ export function handleInitialData() {
       .then(({ users, questions}) => {
         dispatch(receiveUsers(users))
         dispatch(receiveQuestions(questions))
+        console.log("Handled Initial Data")
       })
   }
 }
