@@ -6,6 +6,9 @@ import { createStore } from 'redux'
 import reducer from './reducers'
 import middleware from './middleware'
 
+import { addQuestion } from './actions/questions'
+import { receiveUsers } from './actions/users'
+
 const store = createStore(reducer, middleware)
 
 ReactDOM.render(
@@ -13,17 +16,29 @@ ReactDOM.render(
   document.getElementById('root')
 )
 
-/*
-// Dispatch an action to set the user
-// (since initial state is empty)
-store.dispatch({
-  type: "SET_USER",
-  user: {
-    avatar: "https://www.gravatar.com/avatar/5c3dd2d257ff0e14dbd2583485dbd44b",
-    name: "Dave",
-    followers: 1234,
-    following: 123
-  }
-});
 
-*/
+// TESTING Store:
+
+// Receive users
+// store.dispatch(
+//   receiveUsers()
+// )
+
+// Add Question
+store.dispatch(
+  addQuestion({
+    "007": {
+      id: '007',
+      author: 'jamesbond',
+      timestamp: 1467166872639,
+      optionOne: {
+        votes: ['jamesbond'],
+        text: 'geschüttelt',
+      },
+      optionTwo: {
+        votes: [],
+        text: 'gerührt'
+      }
+    },
+  })
+);

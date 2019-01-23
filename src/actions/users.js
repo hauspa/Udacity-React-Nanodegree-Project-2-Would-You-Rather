@@ -1,6 +1,6 @@
-const RECEIVE_USERS         = 'RECEIVE_USERS'
-const UPDATE_USER_QUESTIONS = 'UPDATE_USER_QUESTIONS'
-const UPDATE_USER_ANSWERS   = 'UPDATE_USER_ANSWERS'
+export const RECEIVE_USERS         = 'RECEIVE_USERS'
+export const UPDATE_USER_QUESTIONS = 'UPDATE_USER_QUESTIONS'
+export const UPDATE_USER_ANSWERS   = 'UPDATE_USER_ANSWERS'
 
 export function receiveUsers(users) {
   return {

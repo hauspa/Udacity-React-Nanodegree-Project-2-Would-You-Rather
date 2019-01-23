@@ -1,6 +1,6 @@
-const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
-const ADD_QUESTION      = 'ADD_QUESTION'
-const UPDATE_QUESTION   = 'UPDATE_QUESTION'
+export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
+export const ADD_QUESTION      = 'ADD_QUESTION'
+export const UPDATE_QUESTION   = 'UPDATE_QUESTION'
 
 export function receiveQuestions(questions) {
   return {
