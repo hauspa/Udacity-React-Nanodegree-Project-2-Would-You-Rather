@@ -1,6 +1,6 @@
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const ADD_QUESTION      = 'ADD_QUESTION'
-export const UPDATE_QUESTION   = 'UPDATE_QUESTION'
+export const UPDATE_VOTES      = 'UPDATE_VOTES'
 
 export function receiveQuestions(questions) {
   return {
@@ -16,9 +16,9 @@ export function addQuestion(question) {
   }
 }
 
-export function updateQuestion(questionId, option, userId) {
+export function updateVotes(questionId, option, userId) {
   return {
-    type: UPDATE_QUESTION,
+    type: UPDATE_VOTES,
     questionId,
     option,
     userId,

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import logo from '../logo.svg';
 import '../App.css';
 import { handleInitialData } from '../actions/shared'
-import { addQuestion } from '../actions/questions'
+import { addQuestion, updateVotes } from '../actions/questions'
 import { addUserAnswers, addUserQuestions } from '../actions/users'
 import { setAuthedUser } from '../actions/authedUser'
 
@@ -43,6 +43,10 @@ class App extends Component {
 
     // testing SET_AUTHED_USER
     this.props.dispatch(setAuthedUser(id))
+
+    // testing UPDATE_VOTES
+    this.props.dispatch(updateVotes(questionId, 'optionOne', id))
+    this.props.dispatch(updateVotes(questionId, 'optionTwo', 'Michael Scott'))
   }
 
   logTesting = () => {
