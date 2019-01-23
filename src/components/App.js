@@ -5,6 +5,7 @@ import '../App.css';
 import { handleInitialData } from '../actions/shared'
 import { addQuestion } from '../actions/questions'
 import { addUserAnswers, addUserQuestions } from '../actions/users'
+import { setAuthedUser } from '../actions/authedUser'
 
 class App extends Component {
 
@@ -39,6 +40,9 @@ class App extends Component {
 
     // testing ADD_USER_QUESTIONS
     this.props.dispatch(addUserQuestions(id, questionId))
+
+    // testing SET_AUTHED_USER
+    this.props.dispatch(setAuthedUser(id))
   }
 
   logTesting = () => {
@@ -74,10 +78,11 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ users, questions }) {
+function mapStateToProps({ users, questions, authedUser }) {
   return {
     users,
     questions,
+    authedUser,
   }
 }
 
