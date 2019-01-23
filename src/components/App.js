@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import logo from '../logo.svg';
 import '../App.css';
+import Home from './Home'
+import Login from './Login'
+import LoadingBar from 'react-redux-loading-bar'
 import { handleInitialData } from '../actions/shared'
 import { addQuestion, updateVotes } from '../actions/questions'
 import { addUserAnswers, addUserQuestions } from '../actions/users'
@@ -11,7 +14,6 @@ class App extends Component {
 
   componentDidMount() {
     this.props.dispatch(handleInitialData())
-
   }
 
   testingStore = () => {
@@ -35,8 +37,8 @@ class App extends Component {
     }))
 
     // testing ADD_USER_ANSWERS
-    let answer = {}
-    this.props.dispatch(addUserAnswers(id, {'loxhs1bqm25b708cmbf3g' : 'optionOne'}))
+    let answer = {'loxhs1bqm25b708cmbf3g' : 'optionOne'}
+    this.props.dispatch(addUserAnswers(id, answer))
 
     // testing ADD_USER_QUESTIONS
     this.props.dispatch(addUserQuestions(id, questionId))
@@ -53,40 +55,47 @@ class App extends Component {
     console.log(this.props)
   }
 
-
   render() {
+    console.log('DUDE')
+    console.log(this.props)
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <p>Dude</p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          <br></br>
-          <br></br>
-          <button onClick={this.testingStore}>TESTING</button>
-          <br></br>
-          <button onClick={this.logTesting}>LOG</button>
-        </header>
-      </div>
-    );
+      this.props.loading === true
+        ? <LoadingBar />
+        : this.props.loggedIn === true
+          ? <Home />
+          : <Login />
+        // (
+        //     <div className="App">
+        //       <header className="App-header">
+        //         <img src={logo} className="App-logo" alt="logo" />
+        //         <p>
+        //           Edit <code>src/App.js</code> and save to reload.
+        //         </p>
+        //         <p>Dude</p>
+        //         <a
+        //           className="App-link"
+        //           href="https://reactjs.org"
+        //           target="_blank"
+        //           rel="noopener noreferrer"
+        //           >
+        //             Learn React
+        //           </a>
+        //           <br></br>
+        //           <br></br>
+        //           <button onClick={this.testingStore}>TESTING</button>
+        //           <br></br>
+        //           <button onClick={this.logTesting}>LOG</button>
+        //         </header>
+        //     </div>
+        // )
+    )
   }
 }
 
-function mapStateToProps({ users, questions, authedUser }) {
+function mapStateToProps({ users, questions, authedUser, }) {
   return {
-    users,
-    questions,
-    authedUser,
+    loading: (Object.keys(users).length === 0 && users.constructor === Object) || (Object.keys(questions).length === 0 && questions.constructor === Object), // check whether data is already loaded
+    loggedIn: authedUser !== null
   }
 }
 
