@@ -1,7 +1,7 @@
 import {
   RECEIVE_USERS,
-  UPDATE_USER_ANSWERS,
-  UPDATE_USER_QUESTIONS,
+  ADD_USER_ANSWERS,
+  ADD_USER_QUESTIONS,
 } from '../actions/users'
 
 export default function users(state = {}, action) {
@@ -11,15 +11,15 @@ export default function users(state = {}, action) {
         ...state,
         ...action.users
       }
-    // case UPDATE_USER_ANSWERS :
-    //   return {
-    //     ...state,
-    //     [action.id]: {
-    //       ...state[action.id],
-    //       answers: { ...state[action.id].answers, action.answer }
-    //     }
-    //   }
-    case UPDATE_USER_QUESTIONS :
+    case ADD_USER_ANSWERS :
+      return {
+        ...state,
+        [action.id]: {
+          ...state[action.id],
+          answers: { ...state[action.id].answers, ...action.answer }
+        }
+      }
+    case ADD_USER_QUESTIONS :
       return {
         ...state,
         [action.id]: {

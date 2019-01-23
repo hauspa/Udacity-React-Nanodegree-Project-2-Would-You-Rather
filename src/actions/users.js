@@ -1,6 +1,6 @@
 export const RECEIVE_USERS         = 'RECEIVE_USERS'
-export const UPDATE_USER_QUESTIONS = 'UPDATE_USER_QUESTIONS'
-export const UPDATE_USER_ANSWERS   = 'UPDATE_USER_ANSWERS'
+export const ADD_USER_ANSWERS      = 'ADD_USER_ANSWERS'
+export const ADD_USER_QUESTIONS    = 'ADD_USER_QUESTIONS'
 
 export function receiveUsers(users) {
   return {
@@ -9,17 +9,17 @@ export function receiveUsers(users) {
   }
 }
 
-export function updateUserAnswers(id, answer){
+export function addUserAnswers(id, answer){
   return {
-    type: UPDATE_USER_ANSWERS,
+    type: ADD_USER_ANSWERS,
     id,
     answer, // { "question ID" : "Option" }
   }
 }
 
-export function updateUserQuestions(id, questionId){
+export function addUserQuestions(id, questionId){
   return {
-    type: UPDATE_USER_QUESTIONS,
+    type: ADD_USER_QUESTIONS,
     id,
     questionId,
   }

@@ -4,27 +4,47 @@ import logo from '../logo.svg';
 import '../App.css';
 import { handleInitialData } from '../actions/shared'
 import { addQuestion } from '../actions/questions'
+import { addUserAnswers, addUserQuestions } from '../actions/users'
 
 class App extends Component {
 
   componentDidMount() {
     this.props.dispatch(handleInitialData())
-    // this.props.dispatch(addQuestion({
-    //   "007blabla": {
-    //     id: '007blabla',
-    //     author: 'jamesbond',
-    //     timestamp: 1467166872688,
-    //     optionOne: {
-    //       votes: ['jamesbond'],
-    //       text: 'dude',
-    //     },
-    //     optionTwo: {
-    //       votes: [],
-    //       text: 'bro'
-    //     }
-    //   },
-    // }))
+
   }
+
+  testingStore = () => {
+    let id = 'johndoe'
+    let questionId = '007blabla'
+    // testing ADD_QUESTION
+    this.props.dispatch(addQuestion({
+      [questionId]: {
+        id: questionId,
+        author: 'jamesbond',
+        timestamp: 1467166872688,
+        optionOne: {
+          votes: ['jamesbond'],
+          text: 'dude',
+        },
+        optionTwo: {
+          votes: [],
+          text: 'bro'
+        }
+      },
+    }))
+
+    // testing ADD_USER_ANSWERS
+    let answer = {}
+    this.props.dispatch(addUserAnswers(id, {'loxhs1bqm25b708cmbf3g' : 'optionOne'}))
+
+    // testing ADD_USER_QUESTIONS
+    this.props.dispatch(addUserQuestions(id, questionId))
+  }
+
+  logTesting = () => {
+    console.log(this.props)
+  }
+
 
   render() {
     return (
@@ -43,10 +63,22 @@ class App extends Component {
           >
             Learn React
           </a>
+          <br></br>
+          <br></br>
+          <button onClick={this.testingStore}>TESTING</button>
+          <br></br>
+          <button onClick={this.logTesting}>LOG</button>
         </header>
       </div>
     );
   }
 }
 
-export default connect()(App)
+function mapStateToProps({ users, questions }) {
+  return {
+    users,
+    questions,
+  }
+}
+
+export default connect(mapStateToProps)(App)
