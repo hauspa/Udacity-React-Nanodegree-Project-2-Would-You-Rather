@@ -27,6 +27,8 @@ class Login extends Component {
 
     // save in Redux store
     this.props.dispatch(loginAuthedUser(id, name, picture))
+
+    // TODO: after LOGIN => send to HOME Component!
   }
 
   logout = () => {
@@ -60,7 +62,7 @@ class Login extends Component {
                       // </div>
                     ))
                   }
-                  <br></br>                  
+                  <br></br>
                   <button className="btn btn-outline-success" type="button" onClick={this.login} disabled={!this.state.selectedUser.length > 0}>Login</button>
                 </Fragment>
               )

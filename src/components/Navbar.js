@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 
 class Navbar extends Component {
 
-  login = () => {
-    // TODO: go to Login Page
+  goToLogin = () => {
+    // TODO: go to Login Page for loggin
   }
 
   render() {
@@ -29,9 +29,10 @@ class Navbar extends Component {
                   {console.log(this.props.authedUser.name)}
                   <span>Hello, {this.props.authedUser.id}!</span>
                   <img src={window.location.origin + this.props.authedUser.avatarPath} width="30" height="30" className="d-inline-block align-top rounded" alt="Profile Picture" />
+                  <button className="btn btn-outline-success" type="button" onClick={this.goToLogin}>Logout</button>
                 </div>
               )
-              : <button className="btn btn-outline-success" type="button" onClick={this.login}>Login</button>
+              : <button className="btn btn-outline-success" type="button" onClick={this.goToLogin}>Login</button>
             }
           </div>
       </nav>
