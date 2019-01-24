@@ -24,14 +24,15 @@ class Navbar extends Component {
           </div>
           <div className="navbar-nav navbar-right">
             {
-              this.props.authedUser !== null
+              this.props.loggedIn === true
               ? (
                 <div className="navbar-brand navbar-right">
-                  <span>Hello, {this.props.authedUser.name}!</span>
+                  {console.log(this.props.authedUser.name)}
+                  <span>Hello, {this.props.authedUser.id}!</span>
                   <img src={window.location.origin + this.props.authedUser.avatarPath} width="30" height="30" className="d-inline-block align-top rounded" alt="Profile Picture" />
                 </div>
               )
-              : <button className="btn btn-outline-success" type="button" onClick={this.login}>Log in</button>              
+              : <button className="btn btn-outline-success" type="button" onClick={this.login}>Log in</button>
             }
           </div>
       </nav>
@@ -42,7 +43,8 @@ class Navbar extends Component {
 function mapStateToProps({ authedUser }) {
   return {
     authedUser,
-    loggedIn: authedUser !== null,
+    // gotta make sure entire authedUser object is loaded, not just id. otherwise won't display name & picture
+    loggedIn: authedUser !== null && authedUser.name !== null && authedUser.avatarPath !== null,
   }
 }
 

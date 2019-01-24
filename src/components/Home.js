@@ -16,6 +16,7 @@ class Home extends Component {
       <div>
         <h1>Home</h1>
         <p>User: {authedUser.id}</p>
+        <p>User name: {authedUser.name}</p>
         <ul>
           {/* {this.props.questions.map((question) => (
             <li key={question.id}>{question.optionOne}</li>

@@ -1,11 +1,35 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import _ from 'lodash'
+import { setAuthedUser } from '../actions/authedUser'
 
 class Login extends Component {
 
+  state = {
+    'selectedUser': ''
+  }
+
+  handleChange = (e) => {
+    let targetValue = e.target.value
+    this.setState((prevState) => ({
+      selectedUser: targetValue
+    }))
+  }
+
+  login = () => {
+    let id = this.state.selectedUser
+
+    // get other metadata for authedUser
+    let userObject = _.pickBy(this.props.users, (user) => user.id === id) // like filter for objects
+    let name = userObject[id].name
+    let picture = userObject[id].avatarURL
+    console.log("selected user")
+    console.log(userObject)
+    console.log("Name: ", userObject[id].name)
+    this.props.dispatch(setAuthedUser(id, name, picture))
+  }
+
   render() {
-    console.log('LOGIN')
-    console.log(this.props)
     let { authedUser, users, loading } = this.props
     return(
       <div>
@@ -19,17 +43,22 @@ class Login extends Component {
                 <Fragment>
                   {
                     Object.values(users).map((user) => (
-                      
-
-                      <div className="row align-items-center mt-1" key={user.id}>
-                        <div className="col bg-primary mx-auto">
-                          <img src={window.location.origin + user.avatarURL} width="50" height="50" className="d-inline-block align-top rounded" alt="Profile Picture" />
-                          <span>{user.name}</span>
-                        </div>
+                      <div className="form-check" key={user.id}>
+                        <input onChange={this.handleChange} className="form-check-input" type="radio" name="usersRadios" id={user.id} value={user.id} />
+                        <label className="form-check-label" htmlFor={user.id}>
+                          {user.name}
+                        </label>
                       </div>
+                      // <div className="row align-items-center mt-1" key={user.id}>
+                      //   <div className="col bg-primary mx-auto">
+                      //     <img src={window.location.origin + user.avatarURL} width="50" height="50" className="d-inline-block align-top rounded" alt="Profile Picture" />
+                      //     <span>{user.name}</span>
+                      //   </div>
+                      // </div>
                     ))
                   }
                   <br></br>
+                  {/* TODO: if no user selected, then disabled button! */}
                   <button className="btn btn-outline-success" type="button" onClick={this.login}>Log in</button>
                 </Fragment>
               )
@@ -38,16 +67,6 @@ class Login extends Component {
               // TODO: Or actually, have UI for logging out!!!!
               // TODO: and show currently authed User too
         }
-
-        <br></br>
-        <br></br>
-        <ul>
-          {
-            Object.values(users).map((user) => (
-              <li key={user.id}>{user.name}</li>
-            ))
-          }
-        </ul>
       </div>
     )
   }
