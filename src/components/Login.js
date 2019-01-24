@@ -32,6 +32,9 @@ class Login extends Component {
   }
 
   logout = () => {
+    this.setState((prevState) => ({
+      selectedUser: ''
+    }))
     this.props.dispatch(logoutAuthedUser())
   }
 
