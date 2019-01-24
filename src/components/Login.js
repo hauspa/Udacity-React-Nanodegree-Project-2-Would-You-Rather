@@ -36,7 +36,7 @@ class Login extends Component {
     let { users, loading } = this.props
     return(
       <div>
-        <h3>LOGIN</h3>
+        <h3 className='text-center'>Please login:</h3>
         {
           loading === true // still loading
             ? null
@@ -44,7 +44,7 @@ class Login extends Component {
               <Fragment>
                 {
                   Object.values(users).map((user) => (
-                    <div className="form-check" key={user.id}>
+                    <div className="form-check text-center mt-3" key={user.id}>
                       <input onChange={this.handleChange} className="form-check-input" type="radio" name="usersRadios" id={user.id} value={user.id} />
                       <label className="form-check-label" htmlFor={user.id}>
                         {user.name}
@@ -59,7 +59,9 @@ class Login extends Component {
                   ))
                 }
                 <br></br>
-                <button className="btn btn-outline-success" type="button" onClick={this.login} disabled={!this.state.selectedUser.length > 0}>Login</button>
+                <div className='row'>
+                  <button className="btn btn-outline-success mx-auto" type="button" onClick={this.login} disabled={!this.state.selectedUser.length > 0}>Login</button>
+                </div>
               </Fragment>
             )
         }

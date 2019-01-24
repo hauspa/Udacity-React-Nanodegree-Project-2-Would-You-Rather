@@ -4,6 +4,10 @@
   height: 50px;
 }
 
+.questions{
+  width: 600px;
+}
+
 .App {
   text-align: center;
 }

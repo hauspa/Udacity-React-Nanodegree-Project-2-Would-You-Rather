@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux'
 import logo from '../logo.svg';
 import '../App.css';
@@ -57,15 +57,26 @@ class App extends Component {
     return (
       <div>
         <LoadingBar />
-        <Navbar />
-        <div className='container'>
           {this.props.loading === true
             ? null
             : this.props.loggedIn === true
-              ? <Home />
-              : <Login />
+              ? (
+                <Fragment>
+                  <Navbar />
+                  <div className='container'>
+                    <Home />
+                  </div>
+                </Fragment>
+              )
+              : (
+                <div className='container'>
+                  <h1 className='text-center'>Welcome to Would You Rather...?</h1>
+                  <br></br>
+                  <br></br>
+                  <Login />
+                </div>
+              )
           }
-        </div>
       </div>
         // (
         //     <div className="App">
