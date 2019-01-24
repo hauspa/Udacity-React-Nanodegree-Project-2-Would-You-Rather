@@ -4,8 +4,6 @@ import { connect } from 'react-redux'
 class Home extends Component {
 
   render() {
-    console.log("HOME Component:")
-    console.log(this.props)
     let { questions, authedUser } = this.props
     return(
       <div>

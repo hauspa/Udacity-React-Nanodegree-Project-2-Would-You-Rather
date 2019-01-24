@@ -4,6 +4,7 @@ import logo from '../logo.svg';
 import '../App.css';
 import Home from './Home'
 import Login from './Login'
+import Logout from './Logout'
 import Navbar from './Navbar'
 import LoadingBar from 'react-redux-loading-bar'
 import { handleInitialData } from '../actions/shared'
@@ -60,11 +61,9 @@ class App extends Component {
         <div className='container'>
           {this.props.loading === true
             ? null
-            : (
-              <div>
-                <Login />
-              </div>
-            )
+            : this.props.loggedIn === true
+              ? <Home />
+              : <Login />
           }
         </div>
       </div>
@@ -101,7 +100,7 @@ class App extends Component {
 function mapStateToProps({ users, questions, authedUser, }) {
   return {
     loading: (Object.keys(users).length === 0 && users.constructor === Object) || (Object.keys(questions).length === 0 && questions.constructor === Object), // check whether data is already loaded
-    loggedIn: authedUser !== null
+    loggedIn: authedUser !== null,
   }
 }
 

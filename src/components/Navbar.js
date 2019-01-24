@@ -26,7 +26,6 @@ class Navbar extends Component {
               this.props.loggedIn === true
               ? (
                 <div className="navbar-brand navbar-right">
-                  {console.log(this.props.authedUser.name)}
                   <span>Hello, {this.props.authedUser.id}!</span>
                   <img src={window.location.origin + this.props.authedUser.avatarPath} width="30" height="30" className="d-inline-block align-top rounded" alt="Profile Picture" />
                   <button className="btn btn-outline-success" type="button" onClick={this.goToLogin}>Logout</button>
