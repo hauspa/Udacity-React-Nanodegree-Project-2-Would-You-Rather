@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { setAuthedUser } from '../actions/authedUser'
 
 class Navbar extends Component {
 
   login = () => {
-    this.props.dispatch(setAuthedUser('michaelScarn', 'Michael Scott', '/avatars/michaelScott.jpg'))
+    // TODO: go to Login Page
   }
 
   render() {
@@ -32,7 +31,7 @@ class Navbar extends Component {
                   <img src={window.location.origin + this.props.authedUser.avatarPath} width="30" height="30" className="d-inline-block align-top rounded" alt="Profile Picture" />
                 </div>
               )
-              : <button className="btn btn-outline-success" type="button" onClick={this.login}>Log in</button>
+              : <button className="btn btn-outline-success" type="button" onClick={this.login}>Login</button>
             }
           </div>
       </nav>

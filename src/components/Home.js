@@ -1,12 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { setAuthedUser } from '../actions/authedUser'
 
 class Home extends Component {
-
-  login = () => {
-    this.props.dispatch(setAuthedUser('michaelScott'))
-  }
 
   render() {
     console.log("HOME Component:")

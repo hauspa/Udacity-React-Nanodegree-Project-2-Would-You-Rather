@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
-import { setAuthedUser } from '../actions/authedUser'
+import { loginAuthedUser, logoutAuthedUser } from '../actions/authedUser'
 
 class Login extends Component {
 
@@ -17,16 +17,20 @@ class Login extends Component {
   }
 
   login = () => {
+    // get the selected user from the Component's state
     let id = this.state.selectedUser
 
     // get other metadata for authedUser
     let userObject = _.pickBy(this.props.users, (user) => user.id === id) // like filter for objects
     let name = userObject[id].name
     let picture = userObject[id].avatarURL
-    console.log("selected user")
-    console.log(userObject)
-    console.log("Name: ", userObject[id].name)
-    this.props.dispatch(setAuthedUser(id, name, picture))
+
+    // save in Redux store
+    this.props.dispatch(loginAuthedUser(id, name, picture))
+  }
+
+  logout = () => {
+    this.props.dispatch(logoutAuthedUser())
   }
 
   render() {
@@ -34,7 +38,6 @@ class Login extends Component {
     return(
       <div>
         <h3>LOGIN</h3>
-        <p>authedUser: {authedUser || "NOBODY"}</p> {/* authedUser.id doesn't work, because at that point it's still null!!!! not an object yet!!! */}
         {
           loading === true // still loading
             ? null
@@ -59,13 +62,18 @@ class Login extends Component {
                   }
                   <br></br>
                   {/* TODO: if no user selected, then disabled button! */}
-                  <button className="btn btn-outline-success" type="button" onClick={this.login}>Log in</button>
+                  <button className="btn btn-outline-success" type="button" onClick={this.login}>Login</button>
                 </Fragment>
               )
-              : null
-              // TODO: redirect to Home Page, because already logged in
-              // TODO: Or actually, have UI for logging out!!!!
-              // TODO: and show currently authed User too
+              : (
+                // TODO: Or actually, have UI for logging out!!!!
+                <div>
+                  <p>authedUser: {authedUser.name || "NOBODY"}</p> {/* authedUser.id doesn't work, because at that point it's still null!!!! not an object yet!!! */}
+                  <h4>{authedUser.name}, are you sure you want to logout?</h4>
+                  <br></br>
+                  <button className="btn btn-outline-success" type="button" onClick={this.logout}>Logout</button>
+                </div>
+              )
         }
       </div>
     )

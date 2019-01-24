@@ -9,7 +9,6 @@ import LoadingBar from 'react-redux-loading-bar'
 import { handleInitialData } from '../actions/shared'
 import { addQuestion, updateVotes } from '../actions/questions'
 import { addUserAnswers, addUserQuestions } from '../actions/users'
-import { setAuthedUser } from '../actions/authedUser'
 
 class App extends Component {
 
@@ -44,9 +43,6 @@ class App extends Component {
     // testing ADD_USER_QUESTIONS
     this.props.dispatch(addUserQuestions(id, questionId))
 
-    // testing SET_AUTHED_USER
-    this.props.dispatch(setAuthedUser(id))
-
     // testing UPDATE_VOTES
     this.props.dispatch(updateVotes(questionId, 'optionOne', id))
     this.props.dispatch(updateVotes(questionId, 'optionTwo', 'Michael Scott'))
@@ -66,11 +62,7 @@ class App extends Component {
             ? null
             : (
               <div>
-                {
-                  this.props.loggedIn === true
-                    ? <Home />
-                    : <Login />
-                }
+                <Login />
               </div>
             )
           }
