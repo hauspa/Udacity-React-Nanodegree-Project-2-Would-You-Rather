@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { setAuthedUser } from '../actions/authedUser'
 
 class Home extends Component {
 
-  testing = () => {
-    console.log('DUDE')
-    console.log(this.props.questions['8xf0y6ziyjabvozdd253nd'].author)
+  login = () => {
+    this.props.dispatch(setAuthedUser('michaelScott'))
   }
 
   render() {
@@ -15,14 +15,13 @@ class Home extends Component {
     return(
       <div>
         <h1>Home</h1>
-        <p>User: {questions['8xf0y6ziyjabvozdd253nd'].author}</p>
-          {/* <p>current user: {this.props.authedUser}</p> */}
+        <p>User: {authedUser.id}</p>
+        <button onClick={this.login}>Log in</button>
         <ul>
           {/* {this.props.questions.map((question) => (
             <li key={question.id}>{question.optionOne}</li>
           ))} */}
         </ul>
-        <button onClick={this.testing}>TEST PROPS</button>
       </div>
     )
   }

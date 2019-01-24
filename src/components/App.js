@@ -4,6 +4,7 @@ import logo from '../logo.svg';
 import '../App.css';
 import Home from './Home'
 import Login from './Login'
+import Navbar from './Navbar'
 import LoadingBar from 'react-redux-loading-bar'
 import { handleInitialData } from '../actions/shared'
 import { addQuestion, updateVotes } from '../actions/questions'
@@ -56,17 +57,24 @@ class App extends Component {
   }
 
   render() {
-    console.log('DUDE')
-    console.log(this.props)
     return (
       <div>
-      <LoadingBar />
-      {this.props.loading === true
-        ? null
-        : this.props.loggedIn === true
-          ? <Home />
-          : <Login />
-      }
+        <LoadingBar />
+        <Navbar />
+        <div className='container'>
+          {this.props.loading === true
+            ? null
+            : (
+              <div>
+                {
+                  this.props.loggedIn === true
+                    ? <Home />
+                    : <Login />
+                }
+              </div>
+            )
+          }
+        </div>
       </div>
         // (
         //     <div className="App">
@@ -91,7 +99,7 @@ class App extends Component {
         //           <button onClick={this.logTesting}>LOG</button>
         //         </header>
         //     </div>
-        // ) 
+        // )
         // TODO: add 404 page for cases when website not available
         // TODO: go to Login, when users went on website using browser search bar
     )

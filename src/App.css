@@ -1,3 +1,9 @@
+.navUser{
+  background: coral;
+  /* width: 250px; */
+  height: 50px;
+}
+
 .App {
   text-align: center;
 }

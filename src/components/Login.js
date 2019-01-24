@@ -10,7 +10,7 @@ class Login extends Component {
     return(
       <div>
         <h3>LOGIN</h3>
-        <p>authedUser: {authedUser || "DUDE"}</p>
+        <p>authedUser: {authedUser || "NOBODY"}</p> {/* authedUser.id doesn't work, because at that point it's still null!!!! not an object yet!!! */}
         <ul>
           {
             Object.values(users).map((user) => (
