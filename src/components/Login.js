@@ -60,13 +60,11 @@ class Login extends Component {
                       // </div>
                     ))
                   }
-                  <br></br>
-                  {/* TODO: if no user selected, then disabled button! */}
-                  <button className="btn btn-outline-success" type="button" onClick={this.login}>Login</button>
+                  <br></br>                  
+                  <button className="btn btn-outline-success" type="button" onClick={this.login} disabled={!this.state.selectedUser.length > 0}>Login</button>
                 </Fragment>
               )
               : (
-                // TODO: Or actually, have UI for logging out!!!!
                 <div>
                   <p>authedUser: {authedUser.name || "NOBODY"}</p> {/* authedUser.id doesn't work, because at that point it's still null!!!! not an object yet!!! */}
                   <h4>{authedUser.name}, are you sure you want to logout?</h4>
