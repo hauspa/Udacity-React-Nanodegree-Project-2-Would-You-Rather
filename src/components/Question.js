@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
+import QuestionUnanswered from './QuestionUnanswered'
+import QuestionAnswered from './QuestionAnswered'
 import { updateVotes } from '../actions/questions'
 import { addUserAnswer } from '../actions/users'
 
@@ -29,12 +31,12 @@ class Question extends Component {
   }
 
   render() {
-    let { question } = this.props
+    let { question, alreadyAnswered } = this.props
 
     return(
       <div>
         <h3 className='text-center'>Question</h3>
-        Question ID: {this.props.question.author}
+        Question ID: {this.props.question.id}
 
         <h3 className='text-center'>Would You Rather...</h3>
 
@@ -42,7 +44,10 @@ class Question extends Component {
 
         <br></br>
 
-        {/* TODO: UI for unanswered question */}
+        {alreadyAnswered === true
+          ? <QuestionAnswered />
+          : <QuestionUnanswered />
+        }
 
         <div className='row'>
           <div className='col-lg-5 align-self-center'>
@@ -82,8 +87,14 @@ class Question extends Component {
 }
 
 function mapStateToProps({ questions, authedUser, users }) {
+
+  // get loggedin user's answers keys, so that can see whether already answered or not
+  let user = _.pick(users, authedUser.id)[authedUser.id]
+  let answersKeys = Object.keys(user.answers)
+
   return {
     question: _.pick(questions, paramId)[paramId],
+    alreadyAnswered: _.includes(answersKeys, paramId),
     authedUser,
     // JUST FOR TESTING, can delete again later!
     users,
