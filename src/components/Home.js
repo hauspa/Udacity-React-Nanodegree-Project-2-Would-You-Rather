@@ -21,27 +21,19 @@ class Home extends Component {
   render() {
     let { questions, authedUser, users } = this.props
 
+    // TODO: instead of executing this every single rendering, maybe better if this is in component and using component state?
     // get current user object
     let userObject = _.pickBy(users, (user) => user.id === authedUser.id) // like filter for objects. could use _.pick() too
     let user = userObject[authedUser.id]
-    console.log("User: ", user.name)
-    console.log(user)
     let answersKeys = Object.keys(user.answers)
-    console.log(answersKeys)
-    let questionKeys = Object.keys(questions)
-    console.log(questionKeys)
+    let questionsKeys = Object.keys(questions)
 
-    let questionsUnansweredKeys = _.difference(questionKeys, answersKeys)
-    console.log("Difference: ", questionsUnansweredKeys)
+    let unansweredKeys = _.difference(questionsKeys, answersKeys)
 
-    let questionsUnansweredObject = _.pick(questions, questionsUnansweredKeys)
-    console.log("Unanswered: ", questionsUnansweredObject)
+    let questionsUnanswered = _.pick(questions, unansweredKeys)
+    let questionsAnswered = _.pick(questions, answersKeys)
 
-    let questionsAnsweredObject = _.pick(questions, answersKeys)
-    console.log("Answered: ", questionsAnsweredObject)
-
-
-    // let questionsToShow = this.state.showUnanswered ?  : questionsAnsweredObject
+    let questionsToShow = this.state.showUnanswered ? questionsUnanswered : questionsAnswered
 
     return(
       <div>
@@ -59,7 +51,7 @@ class Home extends Component {
         <br></br>
 
         <div className='questions mx-auto'>
-          {Object.values(questions).map((question) => (
+          {Object.values(questionsToShow).map((question) => (
             <a key={question.id}>
               <div className='row mt-4 border border-warning rounded'>
                 <div className='col'>
