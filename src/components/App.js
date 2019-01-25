@@ -10,7 +10,7 @@ import Question from './Question'
 import LoadingBar from 'react-redux-loading-bar'
 import { handleInitialData } from '../actions/shared'
 import { addQuestion, updateVotes } from '../actions/questions'
-import { addUserAnswers, addUserQuestions } from '../actions/users'
+import { addUserAnswer, addUserQuestion } from '../actions/users'
 
 class App extends Component {
 
@@ -40,10 +40,10 @@ class App extends Component {
 
     // testing ADD_USER_ANSWERS
     let answer = {'loxhs1bqm25b708cmbf3g' : 'optionOne'}
-    this.props.dispatch(addUserAnswers(id, answer))
+    this.props.dispatch(addUserAnswer(id, answer))
 
     // testing ADD_USER_QUESTIONS
-    this.props.dispatch(addUserQuestions(id, questionId))
+    this.props.dispatch(addUserQuestion(id, questionId))
 
     // testing UPDATE_VOTES
     this.props.dispatch(updateVotes(questionId, 'optionOne', id))

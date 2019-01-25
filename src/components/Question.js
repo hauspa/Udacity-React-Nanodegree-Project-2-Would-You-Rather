@@ -1,14 +1,31 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
+import { updateVotes } from '../actions/questions'
+import { addUserAnswer } from '../actions/users'
+
+// TODO: get param from URL later on w/Router
+let paramId = 'loxhs1bqm25b708cmbf3g' // = unanswered question
+// let paramId = '6ni6ok3ym7mf1p33lnez' // = answered question
+
 
 class Question extends Component {
 
+  handleVote = (option) => {
+    // add this poll/the result to the answers in the user's object
+    let answer = {[paramId]: option }
+    this.props.dispatch(addUserAnswer(this.props.authedUser.id, answer))
 
+    // add the result to the questions' object
+    this.props.dispatch(updateVotes())
+  }
+
+  testingLog = () => {
+    // have to log seperately. when calling right after Redux store action, it will be async and still running
+    console.log('Users: ', this.props.users)
+  }
 
   render() {
-    let paramId = 'loxhs1bqm25b708cmbf3g' // = unanswered question
-    // let paramId = '6ni6ok3ym7mf1p33lnez' // = answered question
     let { question } = this.props
 
     return(
@@ -17,6 +34,8 @@ class Question extends Component {
         Question ID: {this.props.question.author}
 
         <h3 className='text-center'>Would You Rather...</h3>
+
+        <button type="button" className="btn btn-primary" onClick={() => this.testingLog()}>LOG USERS</button>
 
         <br></br>
 
@@ -29,7 +48,7 @@ class Question extends Component {
               <div className="card-body">
                 {/* <h5 className="card-title">Card title</h5> */}
                 <p className="card-text">{question.optionOne.text}</p>
-                <a href="#" className="btn btn-primary">Vote</a>
+                <button type="button" className="btn btn-primary" onClick={() => this.handleVote('optionOne')}>Vote</button>
               </div>
             </div>
           </div>
@@ -48,7 +67,8 @@ class Question extends Component {
               <div className="card-body">
                 {/* <h5 className="card-title">Card title</h5> */}
                 <p className="card-text">{question.optionTwo.text}</p>
-                <a href="#" className="btn btn-primary">Vote</a>
+                {/* <a className="btn btn-primary" onClick={() => this.handleVote(false)}>Vote</a> */}
+                <button type="button" className="btn btn-primary" onClick={() => this.handleVote('optionTwo')}>Vote</button>
               </div>
             </div>
           </div>
@@ -58,12 +78,11 @@ class Question extends Component {
   }
 }
 
-function mapStateToProps({ questions, }) {
-  // TODO: get param from URL later on w/Router
-  let paramId = 'loxhs1bqm25b708cmbf3g' // = unanswered question
-  // let paramId = '6ni6ok3ym7mf1p33lnez' // = answered question
+function mapStateToProps({ questions, authedUser, users }) {
   return {
     question: _.pick(questions, paramId)[paramId],
+    authedUser,
+    users, // JUST FOR TESTING, can delete again later!
   }
 }
 
