@@ -27,13 +27,16 @@ class Home extends Component {
     let user = userObject[authedUser.id]
     let answersKeys = Object.keys(user.answers)
     let questionsKeys = Object.keys(questions)
-
     let unansweredKeys = _.difference(questionsKeys, answersKeys)
 
     let questionsUnanswered = _.pick(questions, unansweredKeys)
     let questionsAnswered = _.pick(questions, answersKeys)
 
-    let questionsToShow = this.state.showUnanswered ? questionsUnanswered : questionsAnswered
+    // show questions depending on show unanswered or answered questions
+    let questionsByCategory = this.state.showUnanswered ? questionsUnanswered : questionsAnswered
+
+    // convert to array and sort by timestamp
+    let sortedQuestions = Object.values(questionsByCategory).sort((a,b,) => b.timestamp - a.timestamp)
 
     return(
       <div>
@@ -51,7 +54,7 @@ class Home extends Component {
         <br></br>
 
         <div className='questions mx-auto'>
-          {Object.values(questionsToShow).map((question) => (
+          {sortedQuestions.map((question) => (
             <a key={question.id}>
               <div className='row mt-4 border border-warning rounded'>
                 <div className='col'>
