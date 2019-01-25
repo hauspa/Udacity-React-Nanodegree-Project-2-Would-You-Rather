@@ -6,6 +6,7 @@ import Home from './Home'
 import Login from './Login'
 import Logout from './Logout'
 import Navbar from './Navbar'
+import Question from './Question'
 import LoadingBar from 'react-redux-loading-bar'
 import { handleInitialData } from '../actions/shared'
 import { addQuestion, updateVotes } from '../actions/questions'
@@ -64,7 +65,8 @@ class App extends Component {
                 <Fragment>
                   <Navbar />
                   <div className='container'>
-                    <Home />
+                    {/* <Home /> */}
+                    <Question />
                   </div>
                 </Fragment>
               )
