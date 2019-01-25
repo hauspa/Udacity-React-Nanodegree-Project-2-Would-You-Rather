@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import _ from 'lodash'
 
 class Home extends Component {
 
@@ -13,8 +14,35 @@ class Home extends Component {
     }))
   }
 
+  componentDidMount = () => {
+    // let { users }
+  }
+
   render() {
-    let { questions, authedUser } = this.props
+    let { questions, authedUser, users } = this.props
+
+    // get current user object
+    let userObject = _.pickBy(users, (user) => user.id === authedUser.id) // like filter for objects. could use _.pick() too
+    let user = userObject[authedUser.id]
+    console.log("User: ", user.name)
+    console.log(user)
+    let answersKeys = Object.keys(user.answers)
+    console.log(answersKeys)
+    let questionKeys = Object.keys(questions)
+    console.log(questionKeys)
+
+    let questionsUnansweredKeys = _.difference(questionKeys, answersKeys)
+    console.log("Difference: ", questionsUnansweredKeys)
+
+    let questionsUnansweredObject = _.pick(questions, questionsUnansweredKeys)
+    console.log("Unanswered: ", questionsUnansweredObject)
+
+    let questionsAnsweredObject = _.pick(questions, answersKeys)
+    console.log("Answered: ", questionsAnsweredObject)
+
+
+    // let questionsToShow = this.state.showUnanswered ?  : questionsAnsweredObject
+
     return(
       <div>
         <h1 className='text-center'>Home</h1>
@@ -70,10 +98,11 @@ class Home extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, questions, }) {
+function mapStateToProps({ authedUser, questions, users, }) {
   return {
     authedUser,
     questions,
+    users,
   }
 }
 
