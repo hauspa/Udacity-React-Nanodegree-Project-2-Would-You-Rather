@@ -12,17 +12,20 @@ let paramId = 'loxhs1bqm25b708cmbf3g' // = unanswered question
 class Question extends Component {
 
   handleVote = (option) => {
-    // add this poll/the result to the answers in the user's object
     let answer = {[paramId]: option }
-    this.props.dispatch(addUserAnswer(this.props.authedUser.id, answer))
+    let userId = this.props.authedUser.id
 
-    // add the result to the questions' object
-    this.props.dispatch(updateVotes())
+    // add this poll/the vote to the answers in the user's object
+    this.props.dispatch(addUserAnswer(userId, answer))
+
+    // add the vote to the questions' object
+    this.props.dispatch(updateVotes(paramId, option, userId))
   }
 
   testingLog = () => {
     // have to log seperately. when calling right after Redux store action, it will be async and still running
     console.log('Users: ', this.props.users)
+    console.log('Questions: ', this.props.questions)
   }
 
   render() {
@@ -35,7 +38,7 @@ class Question extends Component {
 
         <h3 className='text-center'>Would You Rather...</h3>
 
-        <button type="button" className="btn btn-primary" onClick={() => this.testingLog()}>LOG USERS</button>
+        <button type="button" className="btn btn-primary" onClick={() => this.testingLog()}>LOG USERS & QUESTIONS</button>
 
         <br></br>
 
@@ -82,7 +85,9 @@ function mapStateToProps({ questions, authedUser, users }) {
   return {
     question: _.pick(questions, paramId)[paramId],
     authedUser,
-    users, // JUST FOR TESTING, can delete again later!
+    // JUST FOR TESTING, can delete again later!
+    users,
+    questions,
   }
 }
 
