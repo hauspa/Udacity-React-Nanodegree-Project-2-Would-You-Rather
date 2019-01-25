@@ -3,11 +3,33 @@ import { connect } from 'react-redux'
 
 class Home extends Component {
 
+  state = {
+    'showUnanswered': true
+  }
+
+  changePagination = (showUnanswered) => {
+    this.setState((prevState) => ({
+      showUnanswered: showUnanswered
+    }))
+  }
+
   render() {
     let { questions, authedUser } = this.props
     return(
       <div>
-        <h1 className='text-center'>Home</h1>      
+        <h1 className='text-center'>Home</h1>
+
+        <br></br>
+
+        <nav>
+          <ul className="pagination pagination-lg justify-content-center">
+            <li className={"page-item " + (this.state.showUnanswered ? 'active' : '')} onClick={() => this.changePagination(true)}><a className="page-link">Unanswered questions</a></li>
+            <li className={"page-item " + (this.state.showUnanswered ? '' : 'active')} onClick={() => this.changePagination(false)}><a className="page-link">Answered questions</a></li>
+          </ul>
+        </nav>
+
+        <br></br>
+
         <div className='questions mx-auto'>
           {Object.values(questions).map((question) => (
             <a key={question.id}>

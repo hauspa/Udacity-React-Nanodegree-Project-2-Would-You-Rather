@@ -43,6 +43,8 @@ class Login extends Component {
             : (
               <Fragment>
                 {
+                  // TODO: Could use Bootstrap's Card Component!!
+
                   Object.values(users).map((user) => (
                     <div className="form-check text-center mt-3" key={user.id}>
                       <input onChange={this.handleChange} className="form-check-input" type="radio" name="usersRadios" id={user.id} value={user.id} />
