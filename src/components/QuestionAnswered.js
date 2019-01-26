@@ -1,10 +1,28 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import _ from 'lodash'
 
 class QuestionAnswered extends Component {
-  render() {
 
-    let { question } = this.props
+  displayUserVotes = (option, votesAmount) => {
+    let votedThisOption = _.includes(this.props.question[option].votes, this.props.authedUser.id)
+
+    switch (true) {
+      case (votesAmount === 1 && votedThisOption) :
+        return `Only you voted`
+      case (votesAmount === 1 && !votedThisOption) :
+        return `1 user voted`
+      case (votesAmount > 1 && votedThisOption) :
+        return `${votesAmount} users voted (including you!)`
+      case (votesAmount > 1 && !votedThisOption) :
+        return `${votesAmount} users `
+      default : // = 0
+        return `Nobody voted`
+    }
+  }
+
+  render() {
+    let { question, authedUser } = this.props
 
     let optionOneVotes = question.optionOne.votes.length
     let optionTwoVotes = question.optionTwo.votes.length
@@ -12,35 +30,30 @@ class QuestionAnswered extends Component {
     let optionOnePercentage = optionOneVotes / totalVotes * 100
     let optionTwoPercentage = optionTwoVotes / totalVotes * 100
 
-    // TODO: show what the user voted for!!!
-
     return(
       <div>
-        <div class="progress">
-          <div class="progress-bar bg-success" role="progressbar" style={{ width: optionOnePercentage + '%' }} aria-valuenow={optionOnePercentage} aria-valuemin="0" aria-valuemax="100"></div>
-          <div class="progress-bar bg-warning" role="progressbar" style={{ width: optionTwoPercentage + '%' }} aria-valuenow={optionTwoPercentage} aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-        <div className='row'>
-          <div className='col text-center'>
-            {optionOnePercentage}%
-          </div>
-          <div className='col text-center'>
-            {optionTwoPercentage}%
-          </div>
+        <h4 className='text-center' style={{ fontSize: 80 + 'px' }}>
+          Total Votes: {totalVotes}
+        </h4>
+        <br></br>
+
+        <div className="progress" style={{ height: 30 + 'px' }}>
+          <div className="progress-bar bg-success" role="progressbar" style={{ width: optionOnePercentage + '%' }} aria-valuenow={optionOnePercentage} aria-valuemin="0" aria-valuemax="100"></div>
+          <div className="progress-bar bg-warning" role="progressbar" style={{ width: optionTwoPercentage + '%' }} aria-valuenow={optionTwoPercentage} aria-valuemin="0" aria-valuemax="100"></div>
         </div>
 
         <br></br>
 
         <div className='row'>
           <div className='col-lg-5 align-self-center'>
-            <div className="card mx-auto text-center" style={{ width: 20 + 'em' }}>
+            <div className="card mx-auto text-center text-white bg-success" style={{ width: 20 + 'em' }}>
               {/* <img className="card-img-top" src="..." alt="Card image cap" /> */}
+              <div className="card-header">{optionOnePercentage}%</div>
               <div className="card-body">
                 {/* <h5 className="card-title">Card title</h5> */}
                 <p className="card-text">{question.optionOne.text}</p>
-
               </div>
-              <div class="card-footer">{question.optionOne.votes.length} users voted</div>
+              <div className="card-footer">{this.displayUserVotes('optionOne', question.optionOne.votes.length)}</div>
             </div>
           </div>
           <div className='col-lg-2 text-center align-self-center or'>
@@ -53,15 +66,15 @@ class QuestionAnswered extends Component {
         </div> */}
       </div>
       <div className='col-lg-5 align-self-center'> {/* offset-md-2 */}
-      <div className="card mx-auto text-center" style={{ width: 20 + 'em' }}>
+      <div className="card mx-auto text-center text-white bg-warning" style={{ width: 20 + 'em' }}>
         {/* <img className="card-img-top" src="..." alt="Card image cap" /> */}
+        <div className="card-header">{optionTwoPercentage}%</div>
         <div className="card-body">
           {/* {question.} */}
-          {/* <h5 className="card-title">Card title</h5> */}
+          {/* <h5 className="card-title">{question.optionTwo.text}</h5> */}
           <p className="card-text">{question.optionTwo.text}</p>
-
         </div>
-        <div class="card-footer">{question.optionTwo.votes.length} users voted</div>
+        <div className="card-footer">{this.displayUserVotes('optionTwo', question.optionTwo.votes.length)}</div>
       </div>
     </div>
   </div>
@@ -74,8 +87,8 @@ function mapStateToProps({ authedUser }, { paramId, question }) {
   return {
     authedUser,
     paramId,
-    question,
+    question, // seems like don't even have to include ownProps, as React just passes it on anyways.
   }
 }
 
-export default connect()(QuestionAnswered)
+export default connect(mapStateToProps)(QuestionAnswered)

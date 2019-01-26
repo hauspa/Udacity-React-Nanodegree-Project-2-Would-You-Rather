@@ -27,7 +27,7 @@ class QuestionUnanswered extends Component {
     return(
       <div className='row'>
         <div className='col-lg-5 align-self-center'>
-          <div className="card mx-auto text-center" style={{ width: 20 + 'em' }}>
+          <div className="card mx-auto text-center text-white bg-success" style={{ width: 20 + 'em' }}>
             {/* <img className="card-img-top" src="..." alt="Card image cap" /> */}
             <div className="card-body">
               {/* <h5 className="card-title">Card title</h5> */}
@@ -46,7 +46,7 @@ class QuestionUnanswered extends Component {
           </div> */}
         </div>
         <div className='col-lg-5 align-self-center'> {/* offset-md-2 */}
-          <div className="card mx-auto text-center" style={{ width: 20 + 'em' }}>
+          <div className="card mx-auto text-center text-white bg-warning" style={{ width: 20 + 'em' }}>
             {/* <img className="card-img-top" src="..." alt="Card image cap" /> */}
             <div className="card-body">
               {/* <h5 className="card-title">Card title</h5> */}

@@ -11,23 +11,12 @@ let paramId = 'loxhs1bqm25b708cmbf3g' // = unanswered question
 
 class Question extends Component {
 
-  testingLog = () => {
-    // have to log seperately. when calling right after Redux store action, it will be async and still running
-    console.log('Users: ', this.props.users)
-    console.log('Questions: ', this.props.questions)
-  }
-
   render() {
     let { question, alreadyAnswered } = this.props
 
     return(
       <div>
-        <h3 className='text-center'>Question</h3>
-        Question ID: {this.props.question.id}
-
         <h3 className='text-center'>Would You Rather...</h3>
-
-        <button type="button" className="btn btn-primary" onClick={() => this.testingLog()}>LOG USERS & QUESTIONS</button>
 
         <br></br>
 
