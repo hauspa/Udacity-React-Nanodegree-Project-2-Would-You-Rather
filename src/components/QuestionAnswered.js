@@ -30,6 +30,8 @@ class QuestionAnswered extends Component {
     let optionOnePercentage = optionOneVotes / totalVotes * 100
     let optionTwoPercentage = optionTwoVotes / totalVotes * 100
 
+    let votedOptionOne = _.includes(question.optionOne.votes, authedUser.id)
+
     return(
       <div>
         <h4 className='text-center' style={{ fontSize: 80 + 'px' }}>
@@ -38,15 +40,15 @@ class QuestionAnswered extends Component {
         <br></br>
 
         <div className="progress" style={{ height: 30 + 'px' }}>
-          <div className="progress-bar bg-success" role="progressbar" style={{ width: optionOnePercentage + '%', fontSize: 22 + 'px' }} aria-valuenow={optionOnePercentage} aria-valuemin="0" aria-valuemax="100">{Math.round(optionOnePercentage)}%</div>
-          <div className="progress-bar bg-danger" role="progressbar" style={{ width: optionTwoPercentage + '%', fontSize: 22 + 'px' }} aria-valuenow={optionTwoPercentage} aria-valuemin="0" aria-valuemax="100">{Math.round(optionTwoPercentage)}%</div>
+          <div className={'progress-bar ' + (votedOptionOne ? 'bg-success' : 'bg-danger')} role="progressbar" style={{ width: optionOnePercentage + '%', fontSize: 22 + 'px' }} aria-valuenow={optionOnePercentage} aria-valuemin="0" aria-valuemax="100">{Math.round(optionOnePercentage)}%</div>
+          <div className={'progress-bar ' + (votedOptionOne ? 'bg-danger' : 'bg-success')} role="progressbar" style={{ width: optionTwoPercentage + '%', fontSize: 22 + 'px' }} aria-valuenow={optionTwoPercentage} aria-valuemin="0" aria-valuemax="100">{Math.round(optionTwoPercentage)}%</div>
         </div>
 
         <br></br>
 
         <div className='row'>
           <div className='col-lg-5 align-self-center'>
-            <div className="card mx-auto text-center text-white bg-success" style={{ width: 20 + 'em' }}>
+            <div className={'card mx-auto text-center text-white ' + (votedOptionOne ? 'bg-success' : 'bg-danger')} style={{ width: 20 + 'em' }}>
               {/* <img className="card-img-top" src="..." alt="Card image cap" /> */}
               {/* <div className="card-header">{optionOnePercentage}%</div> */}
               <div className="card-body">
@@ -66,7 +68,7 @@ class QuestionAnswered extends Component {
         </div> */}
       </div>
       <div className='col-lg-5 align-self-center'> {/* offset-md-2 */}
-      <div className="card mx-auto text-center text-white bg-danger" style={{ width: 20 + 'em' }}>
+      <div className={'card mx-auto text-center text-white ' + (votedOptionOne ? 'bg-danger' : 'bg-success')} style={{ width: 20 + 'em' }}>
         {/* <img className="card-img-top" src="..." alt="Card image cap" /> */}
         {/* <div className="card-header">{optionTwoPercentage}%</div> */}
         <div className="card-body">
