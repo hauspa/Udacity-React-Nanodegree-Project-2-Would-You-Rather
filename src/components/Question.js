@@ -22,7 +22,7 @@ class Question extends Component {
 
         {/* Gonna pass paramId & question via ownProps in Redux, so that can do the logic behind it just once instead of twice! */}
         {alreadyAnswered === true
-          ? <QuestionAnswered paramId={paramId} question={question} />
+          ? <QuestionAnswered   paramId={paramId} question={question} />
           : <QuestionUnanswered paramId={paramId} question={question} />
         }
 

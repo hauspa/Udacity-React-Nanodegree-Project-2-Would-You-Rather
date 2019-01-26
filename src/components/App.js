@@ -64,8 +64,8 @@ class App extends Component {
                   <Navbar />
                   <div className='container'>
                     {/* <Home /> */}
-                    {/* <Question /> */}
-                    <NewQuestion />
+                    <Question />
+                    {/* <NewQuestion /> */}
                   </div>
                 </Fragment>
               )

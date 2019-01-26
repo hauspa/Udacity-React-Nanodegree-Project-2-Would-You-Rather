@@ -1,25 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
-import { updateVotes } from '../actions/questions'
-import { addUserAnswer } from '../actions/users'
+import { handleVoteAnswer } from '../actions/shared'
 
 class QuestionUnanswered extends Component {
 
-  handleVote = (option) => {
-    let { authedUser, paramId } = this.props
-    let answer = {[paramId]: option }
-    let userId = authedUser.id
+  handleVote = (e) => {
+    e.preventDefault() // gotta do this otherwise dispatches twice!
 
-    // add the vote to the questions' object
-    this.props.dispatch(updateVotes(paramId, option, userId))
+    let { paramId } = this.props // paramId === question id
 
-    // TODO: make sure it doesn't switch to QuestionAnswered before both are updated, otherwise might cause a bug!
-    // in Question component, updating by checking user object, not question object => update user object after question object.
-    // even though addUserAnswer is after updateVotes, since it's asynch, might update first.
+    let option = e.target.name
 
-    // add this poll/the vote to the answers in the user's object
-    this.props.dispatch(addUserAnswer(userId, answer))
+    this.props.dispatch(handleVoteAnswer(paramId, option))
   }
 
   render() {
@@ -27,14 +20,15 @@ class QuestionUnanswered extends Component {
     return(
       <div className='row'>
         <div className='col-lg-5 align-self-center'>
-          <div className="card mx-auto text-center text-white bg-success" style={{ width: 20 + 'em' }}>
+          <div className="card mx-auto text-center text-white bg-info" style={{ width: 20 + 'em' }}>
             {/* <img className="card-img-top" src="..." alt="Card image cap" /> */}
             <div className="card-body">
               {/* <h5 className="card-title">Card title</h5> */}
               <p className="card-text">{question.optionOne.text}</p>
             </div>
             <div className="card-footer">
-              <button type="button" className="btn btn-primary" onClick={() => this.handleVote('optionOne')}>Vote</button>
+              {/* <button type="button" className="btn btn-primary" onClick={() => this.handleVote('optionOne')}>Vote</button> */}
+              <button type="button" className="btn btn-primary" name='optionOne' onClick={this.handleVote}>Vote</button>
             </div>
           </div>
         </div>
@@ -48,7 +42,7 @@ class QuestionUnanswered extends Component {
           </div> */}
         </div>
         <div className='col-lg-5 align-self-center'> {/* offset-md-2 */}
-          <div className="card mx-auto text-center text-white bg-warning" style={{ width: 20 + 'em' }}>
+          <div className="card mx-auto text-center text-white bg-info" style={{ width: 20 + 'em' }}>
             {/* <img className="card-img-top" src="..." alt="Card image cap" /> */}
             <div className="card-body">
               {/* <h5 className="card-title">Card title</h5> */}
@@ -56,7 +50,8 @@ class QuestionUnanswered extends Component {
               {/* <a className="btn btn-primary" onClick={() => this.handleVote(false)}>Vote</a> */}
             </div>
             <div className="card-footer">
-              <button type="button" className="btn btn-primary" onClick={() => this.handleVote('optionTwo')}>Vote</button>
+              {/* <button type="button" className="btn btn-primary" onClick={() => this.handleVote('optionTwo')}>Vote</button> */}
+              <button type="button" className="btn btn-primary" name='optionTwo' onClick={this.handleVote}>Vote</button>
             </div>
           </div>
         </div>
@@ -65,9 +60,8 @@ class QuestionUnanswered extends Component {
   }
 }
 
-function mapStateToProps({ authedUser }, { paramId, question }) {
+function mapStateToProps({ }, { paramId, question }) {
   return {
-    authedUser,
     paramId,
     question,
   }

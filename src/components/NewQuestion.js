@@ -20,7 +20,6 @@ class NewQuestion extends Component {
   }
 
   handleClick = (e) => {
-    // TODO: dispatch to adding the question to questions object
     e.preventDefault()
 
     // save as variables, so can read by object destructuring
