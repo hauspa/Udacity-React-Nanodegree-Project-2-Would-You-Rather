@@ -42,8 +42,8 @@ class Leaderboard extends Component {
                   Answers: {Object.keys(user.answers).length}
                 </div>
                 <div className='col bg-info'>
-                  <div className='row d-flex flex-column bg-warning justify-content-center' style={{ height: 100 + '%'}}>
-                    <div className='text-center bg-success '>
+                  <div className='row d-flex flex-column bg-warning' style={{ height: 100 + '%'}}>
+                    <div className='text-center bg-success flex-fill'>
                       {user.questions.length + Object.keys(user.answers).length}
                     </div>
                     <div className='text-center bg-danger '>
