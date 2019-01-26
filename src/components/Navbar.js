@@ -7,6 +7,8 @@ class Navbar extends Component {
     // TODO: go to Login Page for loggin
   }
 
+  // TODO: active state for nav link the current page! 
+
   render() {
     return(
       <nav className="navbar navbar-expand-lg navbar-light bg-light">

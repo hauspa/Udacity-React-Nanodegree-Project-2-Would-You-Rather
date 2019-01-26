@@ -7,6 +7,7 @@ import Login from './Login'
 import Logout from './Logout'
 import Navbar from './Navbar'
 import Question from './Question'
+import NewQuestion from './NewQuestion'
 import LoadingBar from 'react-redux-loading-bar'
 import { handleInitialData } from '../actions/shared'
 import { addQuestion, updateVotes } from '../actions/questions'
@@ -38,9 +39,6 @@ class App extends Component {
       },
     }))
 
-    // testing ADD_USER_ANSWERS
-    let answer = {'loxhs1bqm25b708cmbf3g' : 'optionOne'}
-    this.props.dispatch(addUserAnswer(id, answer))
 
     // testing ADD_USER_QUESTIONS
     this.props.dispatch(addUserQuestion(id, questionId))
@@ -66,7 +64,8 @@ class App extends Component {
                   <Navbar />
                   <div className='container'>
                     {/* <Home /> */}
-                    <Question />
+                    {/* <Question /> */}
+                    <NewQuestion />
                   </div>
                 </Fragment>
               )
