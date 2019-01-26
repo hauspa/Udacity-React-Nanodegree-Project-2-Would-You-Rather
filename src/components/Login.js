@@ -11,13 +11,17 @@ class Login extends Component {
   }
 
   handleChange = (e) => {
+    e.preventDefault()
+
     let targetValue = e.target.value
     this.setState((prevState) => ({
       selectedUser: targetValue
     }))
   }
 
-  login = () => {
+  login = (e) => {
+    e.preventDefault()
+    
     // get the selected user from the Component's state
     let id = this.state.selectedUser
 

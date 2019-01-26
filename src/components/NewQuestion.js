@@ -3,9 +3,28 @@ import { connect } from 'react-redux'
 
 class NewQuestion extends Component {
 
-  handleCreate = () => {
+  state = {
+    inputOne: '',
+    inputTwo: '',
+  }
+
+  handleChange = (e) => {
+    let targetValue = e.target.value
+    let inputNumber = e.target.id
+
+    this.setState((prevState) => ({
+      ...prevState,
+      [inputNumber]: targetValue
+    }))
+  }
+
+  handleClick = (e) => {
     // TODO: dispatch to adding the question to questions object
     // TODO: before adding, gotta get timestamp and get API from _DATA.js
+    e.preventDefault()
+
+    console.log('Input One: ', this.state.inputOne)
+    console.log('Input Two: ', this.state.inputTwo)
   }
 
   render() {
@@ -23,10 +42,10 @@ class NewQuestion extends Component {
         <br></br>
 
         <form>
-          <div class="form-row">
-            <div class="form-group col">
-              <label for="inputOptionOne">First option</label>
-              <input type="text" class="form-control" id="inputOptionOne" placeholder="First option" />
+          <div className="form-row">
+            <div className="form-group col">
+              <label htmlFor="inputOne">First option</label>
+              <input type="text" className="form-control" id="inputOne" placeholder="First option" value={this.state.inputOne} onChange={this.handleChange} />
             </div>
           </div>
 
@@ -40,15 +59,15 @@ class NewQuestion extends Component {
 
           <br></br>
 
-          <div class="form-group">
-            <label for="inputOptionTwo">Second option</label>
-            <input type="text" class="form-control" id="inputOptionTwo" placeholder="Second option" />
+          <div className="form-group">
+            <label htmlFor="inputTwo">Second option</label>
+            <input type="text" className="form-control" id="inputTwo" placeholder="Second option" value={this.state.inputTwo} onChange={this.handleChange} />
           </div>
 
           <br></br>
 
           <div className='row'>
-            <button type="submit" class="btn btn-primary btn-lg mx-auto">Add question</button>
+            <button type="submit" className="btn btn-primary btn-lg mx-auto" disabled={ this.state.inputOne === '' || this.state.inputTwo === '' } onClick={this.handleClick}>Add question</button>
           </div>
         </form>
 
