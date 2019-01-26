@@ -18,17 +18,30 @@ class Leaderboard extends Component {
     return(
       <div>
         <h3>Leaderboard</h3>
+        {/* // TODO: just do it as normal div and use styling to make it look better */}
         <ul className='list-group'>
           {sortedUsers.map((user) => {
             leaderIndex++ // because ordered list doesn't work with Bootstrap
             return (
               <li key={user.id} className={ 'list-group-item mb-1 ' + (authedUser.id === user.id ? 'border border-success' : '') }>
                 {/* <div className='row'>
-                  <div className='col'>
-
+                  <div className='col bg-primary'>
+                    Index: {leaderIndex}
+                  </div>
+                  <div className='col bg-success'>
+                    Name: {user.name}
+                  </div>
+                  <div className='col bg-info'>
+                    Questions: {user.questions.length}
+                  </div>
+                  <div className='col bg-warning'>
+                    Answers: {Object.keys(user.answers).length}
+                  </div>
+                  <div className='col bg-warning'>
+                    Total: {user.questions.length + Object.keys(user.answers).length}
                   </div>
                 </div> */}
-                {leaderIndex}: {user.name}: {user.questions.length + Object.keys(user.answers).length}
+                 {leaderIndex}) {user.name}: {user.questions.length + Object.keys(user.answers).length}
               </li>
             )
           })}
