@@ -32,6 +32,8 @@ class QuestionUnanswered extends Component {
             <div className="card-body">
               {/* <h5 className="card-title">Card title</h5> */}
               <p className="card-text">{question.optionOne.text}</p>
+            </div>
+            <div className="card-footer">
               <button type="button" className="btn btn-primary" onClick={() => this.handleVote('optionOne')}>Vote</button>
             </div>
           </div>
@@ -52,6 +54,8 @@ class QuestionUnanswered extends Component {
               {/* <h5 className="card-title">Card title</h5> */}
               <p className="card-text">{question.optionTwo.text}</p>
               {/* <a className="btn btn-primary" onClick={() => this.handleVote(false)}>Vote</a> */}
+            </div>
+            <div className="card-footer">
               <button type="button" className="btn btn-primary" onClick={() => this.handleVote('optionTwo')}>Vote</button>
             </div>
           </div>
