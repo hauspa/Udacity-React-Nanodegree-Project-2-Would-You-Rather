@@ -10,7 +10,7 @@ import Question from './Question'
 import NewQuestion from './NewQuestion'
 import LoadingBar from 'react-redux-loading-bar'
 import { handleInitialData } from '../actions/shared'
-import { addQuestion, updateVotes } from '../actions/questions'
+import { updateVotes } from '../actions/questions'
 import { addUserAnswer, addUserQuestion } from '../actions/users'
 
 class App extends Component {
@@ -23,21 +23,21 @@ class App extends Component {
     let id = 'johndoe'
     let questionId = '007blabla'
     // testing ADD_QUESTION
-    this.props.dispatch(addQuestion({
-      [questionId]: {
-        id: questionId,
-        author: 'jamesbond',
-        timestamp: 1467166872688,
-        optionOne: {
-          votes: ['jamesbond'],
-          text: 'dude',
-        },
-        optionTwo: {
-          votes: [],
-          text: 'bro'
-        }
-      },
-    }))
+    // this.props.dispatch(addQuestion({
+    //   [questionId]: {
+    //     id: questionId,
+    //     author: 'jamesbond',
+    //     timestamp: 1467166872688,
+    //     optionOne: {
+    //       votes: ['jamesbond'],
+    //       text: 'dude',
+    //     },
+    //     optionTwo: {
+    //       votes: [],
+    //       text: 'bro'
+    //     }
+    //   },
+    // }))
 
 
     // testing ADD_USER_QUESTIONS

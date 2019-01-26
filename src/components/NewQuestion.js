@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { handleNewQuestion } from '../actions/questions'
 
 class NewQuestion extends Component {
 
@@ -19,17 +20,17 @@ class NewQuestion extends Component {
   }
 
   handleClick = (e) => {
-    // TODO: dispatch to adding the question to questions object
-    // TODO: before adding, gotta get timestamp and get API from _DATA.js
+    // TODO: dispatch to adding the question to questions object    
     e.preventDefault()
 
-    console.log('Input One: ', this.state.inputOne)
-    console.log('Input Two: ', this.state.inputTwo)
+    // save as variables, so can read by object destructuring
+    let optionOneText = this.state.inputOne
+    let optionTwoText = this.state.inputTwo
+    this.props.dispatch(handleNewQuestion(optionOneText, optionTwoText))
   }
 
   render() {
     return(
-      // TODO: form, maybe with 'or' in between
       // TODO: if one of the fields is empty, then show that input in red or make button disabled!
       <div>
         <br></br>
@@ -70,29 +71,9 @@ class NewQuestion extends Component {
             <button type="submit" className="btn btn-primary btn-lg mx-auto" disabled={ this.state.inputOne === '' || this.state.inputTwo === '' } onClick={this.handleClick}>Add question</button>
           </div>
         </form>
-
-        {/* <form>
-          <div className="row">
-            <div className="col-5">
-              <input type="text" className="form-control" placeholder="First option" />
-            </div>
-            <div className='col-2'>
-              or
-            </div>
-            <div className="col-5">
-              <input type="text" className="form-control" placeholder="Second option" />
-            </div>
-          </div>
-        </form> */}
       </div>
     )
   }
 }
 
-function mapStateToProps({ authedUser }) {
-  return {
-    authedUser,
-  }
-}
-
-export default connect(mapStateToProps)(NewQuestion)
+export default connect()(NewQuestion)
