@@ -38,8 +38,8 @@ class QuestionAnswered extends Component {
         <br></br>
 
         <div className="progress" style={{ height: 30 + 'px' }}>
-          <div className="progress-bar bg-success" role="progressbar" style={{ width: optionOnePercentage + '%' }} aria-valuenow={optionOnePercentage} aria-valuemin="0" aria-valuemax="100"></div>
-          <div className="progress-bar bg-warning" role="progressbar" style={{ width: optionTwoPercentage + '%' }} aria-valuenow={optionTwoPercentage} aria-valuemin="0" aria-valuemax="100"></div>
+          <div className="progress-bar bg-success" role="progressbar" style={{ width: optionOnePercentage + '%', fontSize: 22 + 'px' }} aria-valuenow={optionOnePercentage} aria-valuemin="0" aria-valuemax="100">{optionOnePercentage}%</div>
+          <div className="progress-bar bg-warning" role="progressbar" style={{ width: optionTwoPercentage + '%', fontSize: 22 + 'px' }} aria-valuenow={optionTwoPercentage} aria-valuemin="0" aria-valuemax="100">{optionTwoPercentage}%</div>
         </div>
 
         <br></br>
@@ -48,7 +48,7 @@ class QuestionAnswered extends Component {
           <div className='col-lg-5 align-self-center'>
             <div className="card mx-auto text-center text-white bg-success" style={{ width: 20 + 'em' }}>
               {/* <img className="card-img-top" src="..." alt="Card image cap" /> */}
-              <div className="card-header">{optionOnePercentage}%</div>
+              {/* <div className="card-header">{optionOnePercentage}%</div> */}
               <div className="card-body">
                 {/* <h5 className="card-title">Card title</h5> */}
                 <p className="card-text">{question.optionOne.text}</p>
@@ -68,7 +68,7 @@ class QuestionAnswered extends Component {
       <div className='col-lg-5 align-self-center'> {/* offset-md-2 */}
       <div className="card mx-auto text-center text-white bg-warning" style={{ width: 20 + 'em' }}>
         {/* <img className="card-img-top" src="..." alt="Card image cap" /> */}
-        <div className="card-header">{optionTwoPercentage}%</div>
+        {/* <div className="card-header">{optionTwoPercentage}%</div> */}
         <div className="card-body">
           {/* {question.} */}
           {/* <h5 className="card-title">{question.optionTwo.text}</h5> */}
