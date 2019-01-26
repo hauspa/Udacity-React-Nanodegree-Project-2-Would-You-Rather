@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { handleNewQuestion } from '../actions/questions'
+import { handleNewQuestion } from '../actions/shared'
 
 class NewQuestion extends Component {
 
@@ -20,7 +20,7 @@ class NewQuestion extends Component {
   }
 
   handleClick = (e) => {
-    // TODO: dispatch to adding the question to questions object    
+    // TODO: dispatch to adding the question to questions object
     e.preventDefault()
 
     // save as variables, so can read by object destructuring
