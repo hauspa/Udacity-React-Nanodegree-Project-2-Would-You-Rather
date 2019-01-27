@@ -10,6 +10,7 @@ import Question from './Question'
 import NewQuestion from './NewQuestion'
 import Leaderboard from './Leaderboard'
 import ErrorPage from './ErrorPage'
+import ProtectedRoute from './ProtectedRoute'
 import LoadingBar from 'react-redux-loading-bar'
 import { handleInitialData } from '../actions/shared'
 import { updateVotes } from '../actions/questions'
@@ -66,37 +67,52 @@ class App extends Component {
         <LoadingBar />
           {loading === true
             ? null
-            : loggedIn === true
-              ? (
-                <Fragment>
-                  <Navbar />
-                  <div className='container'>
-                    <Switch>
-                      <Route exact path='/' component={Home} />
-                      <Route path='/login' component={Login} />
-                      <Route path='/logout' component={Logout} />
-                      <Route path='/add' component={NewQuestion} />
-                      <Route path='/leaderboard' component={Leaderboard} />
-
-                      {/* make sure in Question that ID is valid */}
-                      {
-                        Object.keys(questions).includes(qid) &&
-                          <Route path={`${prefixForQuestions}:id`} component={Question} />
-                      }
-                      <Route component={ErrorPage} />
-                    </Switch>
-                  </div>
-                </Fragment>
-              )
-              : (
-                // <div className='container'>
-                //   <h1 className='text-center'>Welcome to Would You Rather...?</h1>
-                //   <br></br>
-                //   <br></br>
-                //   <Login />
-                // </div>
-                <div>LOGIN</div>
-              )
+            : (
+              <Switch >
+                <Route path='/login' component={Login} />
+                <ProtectedRoute exact path='/' component={Home} />
+                <ProtectedRoute path='/logout' component={Logout} />
+                <ProtectedRoute path='/add' component={NewQuestion} />
+                <ProtectedRoute path='/leaderboard' component={Leaderboard} />
+                {/* make sure in Question that ID is valid */}
+                {
+                  Object.keys(questions).includes(qid) &&
+                    <ProtectedRoute path={`${prefixForQuestions}:id`} component={Question} />
+                }
+                <Route component={ErrorPage} />
+              </Switch>
+            )
+            // : loggedIn === true
+            //   ? (
+            //     <Fragment>
+            //       <Navbar />
+            //       <div className='container'>
+            //         <Switch>
+                      // <Route exact path='/' component={Home} />
+                      // <Route path='/login' component={Login} />
+                      // <Route path='/logout' component={Logout} />
+                      // <Route path='/add' component={NewQuestion} />
+                      // <Route path='/leaderboard' component={Leaderboard} />
+                      //
+                      // {/* make sure in Question that ID is valid */}
+                      // {
+                      //   Object.keys(questions).includes(qid) &&
+                      //     <Route path={`${prefixForQuestions}:id`} component={Question} />
+                      // }
+                      // <Route component={ErrorPage} />
+            //         </Switch>
+            //       </div>
+            //     </Fragment>
+            //   )
+            //   : (
+            //     // <div className='container'>
+            //     //   <h1 className='text-center'>Welcome to Would You Rather...?</h1>
+            //     //   <br></br>
+            //     //   <br></br>
+            //     //   <Login />
+            //     // </div>
+            //     <div>LOGIN</div>
+            //   )
           }
       </div>
 

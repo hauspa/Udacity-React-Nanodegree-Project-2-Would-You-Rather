@@ -34,14 +34,14 @@ class Login extends Component {
 
     // save in Redux store
     this.props.dispatch(loginAuthedUser(id, name, picture))
-      .then(() => {
-        console.log('DONE WITH LOGGIN IN:')
-        // this.setState((prevState) => ({
-        //   ...prevState,
-        //   goToHome: true
-        // }))
-        console.log('GOING TO HOME')
-      })
+      // .then(() => {
+      //   console.log('DONE WITH LOGGIN IN:')
+      //   // this.setState((prevState) => ({
+      //   //   ...prevState,
+      //   //   goToHome: true
+      //   // }))
+      //   console.log('GOING TO HOME')
+      // })
 
     // TODO: after LOGIN => send to HOME Component!
   }
