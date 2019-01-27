@@ -3,11 +3,13 @@ import { connect } from 'react-redux'
 import _ from 'lodash'
 import { loginAuthedUser } from '../actions/authedUser'
 import Home from './Home'
+import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
 
   state = {
-    'selectedUser': ''
+    'selectedUser': '',
+    'goToHome': false
   }
 
   handleChange = (e) => {
@@ -21,7 +23,7 @@ class Login extends Component {
 
   login = (e) => {
     e.preventDefault()
-    
+
     // get the selected user from the Component's state
     let id = this.state.selectedUser
 
@@ -32,12 +34,25 @@ class Login extends Component {
 
     // save in Redux store
     this.props.dispatch(loginAuthedUser(id, name, picture))
+      .then(() => {
+        console.log('DONE WITH LOGGIN IN:')
+        // this.setState((prevState) => ({
+        //   ...prevState,
+        //   goToHome: true
+        // }))
+        console.log('GOING TO HOME')
+      })
 
     // TODO: after LOGIN => send to HOME Component!
   }
 
   render() {
     let { users, loading } = this.props
+
+    if (this.state.goToHome === true) {
+      return <Redirect to='/' />
+    }
+
     return(
       <div>
         <h3 className='text-center'>Please login:</h3>

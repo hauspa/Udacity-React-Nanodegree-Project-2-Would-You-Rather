@@ -83,19 +83,19 @@ class App extends Component {
                         Object.keys(questions).includes(qid) &&
                           <Route path={`${prefixForQuestions}:id`} component={Question} />
                       }
-                      
                       <Route component={ErrorPage} />
                     </Switch>
                   </div>
                 </Fragment>
               )
               : (
-                <div className='container'>
-                  <h1 className='text-center'>Welcome to Would You Rather...?</h1>
-                  <br></br>
-                  <br></br>
-                  <Login />
-                </div>
+                // <div className='container'>
+                //   <h1 className='text-center'>Welcome to Would You Rather...?</h1>
+                //   <br></br>
+                //   <br></br>
+                //   <Login />
+                // </div>
+                <div>LOGIN</div>
               )
           }
       </div>

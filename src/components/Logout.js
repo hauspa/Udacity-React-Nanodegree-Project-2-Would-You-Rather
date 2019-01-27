@@ -5,15 +5,12 @@ import { logoutAuthedUser } from '../actions/authedUser'
 class Logout extends Component {
 
   logout = () => {
-    this.setState((prevState) => ({
-      selectedUser: ''
-    }))
     this.props.dispatch(logoutAuthedUser())
   }
 
   render() {
     let { authedUser } = this.props
-    
+
     return(
       <div>
         <p>authedUser: {authedUser.name || "NOBODY"}</p> {/* authedUser.id doesn't work, because at that point it's still null!!!! not an object yet!!! */}

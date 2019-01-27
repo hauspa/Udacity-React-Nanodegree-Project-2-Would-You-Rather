@@ -47,13 +47,6 @@ export function handleVoteAnswer(qid, option) {
     let { authedUser } = getState()
     let answer = {[qid]: option }
 
-    // this.props.dispatch(updateVotes(qid, option, authedUser.id))
-
-    // add this poll/the vote to the answers in the user's object
-    // this.props.dispatch(addUserAnswer(authedUser.id, answer))
-
-    console.log("Started handling vote")
-
     dispatch(showLoading())
 
     return saveQuestionAnswer({ // add vote to _DATA
@@ -65,6 +58,5 @@ export function handleVoteAnswer(qid, option) {
       .then(() => dispatch(updateVotes(qid, option, authedUser.id))) // add the vote to the questions' object
       .then(() => dispatch(addUserAnswer(authedUser.id, answer))) // add this poll/the vote to the answers in the user's object
       .then(() => dispatch(hideLoading()))
-      .then(() => console.log("Finished handling vote"))
   }
 }
