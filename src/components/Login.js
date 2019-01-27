@@ -9,7 +9,7 @@ class Login extends Component {
 
   state = {
     'selectedUser': '',
-    'goToHome': false
+    'shouldRedirect': false
   }
 
   handleChange = (e) => {
@@ -36,20 +36,18 @@ class Login extends Component {
     this.props.dispatch(loginAuthedUser(id, name, picture))
     this.setState((prevState) => ({
       ...prevState,
-      goToHome: true
+      shouldRedirect: true
     }))
-
-    // TODO: after LOGIN => send to HOME Component!
   }
 
   render() {
     let { users, loading } = this.props
-    let { selectedUser, goToHome } = this.state
+    let { selectedUser, shouldRedirect } = this.state
 
     // if user wanted to other page, can redirect there. if directly to Login, then going to Home
     let { from } = this.props.location.state || { from: { pathname: '/' } }
 
-    if (goToHome === true) {
+    if (shouldRedirect === true) {
       console.log('REDIRECTING to Home after loggin in')
       return <Redirect to={ from } />
     }

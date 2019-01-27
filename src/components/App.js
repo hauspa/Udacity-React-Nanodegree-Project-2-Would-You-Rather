@@ -68,21 +68,23 @@ class App extends Component {
           {loading === true
             ? null
             : (
-              <Switch >
-                {console.log('loggedin? ', loggedIn)}
-                <Route exact path='/login' component={Login} />
-                <ProtectedRoute exact path='/' component={Home} isLoggedIn={loggedIn} />
-                <ProtectedRoute exact path='/logout' component={Logout} />
-                <ProtectedRoute exact path='/add' component={NewQuestion} />
-                {/* <Route exact path='/add' component={NewQuestion} /> */}
-                <ProtectedRoute exact path='/leaderboard' component={Leaderboard} isLoggedIn={loggedIn} />
-                {/* make sure in Question that ID is valid */}
-                {
-                  Object.keys(questions).includes(qid) &&
-                    <ProtectedRoute path={`${prefixForQuestions}:id`} component={Question} />
-                }
-                <Route component={ErrorPage} />
-              </Switch>
+              <Fragment>
+                <Navbar />
+                <Switch>
+                  <Route exact path='/login' component={Login} />
+                  <ProtectedRoute exact path='/' component={Home} isLoggedIn={loggedIn} />
+                  <ProtectedRoute exact path='/logout' component={Logout} isLoggedIn={loggedIn} />
+                  <ProtectedRoute exact path='/add' component={NewQuestion} isLoggedIn={loggedIn} />
+                  {/* <Route exact path='/add' component={NewQuestion} /> */}
+                  <ProtectedRoute exact path='/leaderboard' component={Leaderboard} isLoggedIn={loggedIn} />
+                  {/* make sure in Question that ID is valid */}
+                  {
+                    Object.keys(questions).includes(qid) &&
+                      <ProtectedRoute path={`${prefixForQuestions}:id`} component={Question} isLoggedIn={loggedIn} />
+                  }
+                  <Route component={ErrorPage} />
+                </Switch>
+              </Fragment>
             )
             // : loggedIn === true
             //   ? (
