@@ -32,13 +32,15 @@ class Leaderboard extends Component {
                   {leaderIndex}
                 </div>
                 <div className='col bg-success'>
-                  <img src={window.location.origin + user.avatarURL} alt={user.name} width="30" height="30" />
-                  {user.name}
+                  <div className='row bg-warning h-100 align-items-center justify-content-center'>
+                    <img src={window.location.origin + user.avatarURL} alt={user.name} width="50" height="50" className='rounded mr-2' />
+                    {user.name}
+                  </div>
                 </div>
                 <div className='col bg-info'>
                   <div className='row d-flex flex-column bg-warning h-100 text-center'>
-                    <div className='bg-success flex-fill d-flex flex-row align-items-center'>
-                      <div className='col'>{user.questions.length}</div>
+                    <div className='bg-success flex-fill d-flex flex-row align-items-center justify-content-center'>
+                      {user.questions.length}
                     </div>
                     <div className='bg-danger '>
                       Questions
@@ -47,8 +49,8 @@ class Leaderboard extends Component {
                 </div>
                 <div className='col bg-warning'>
                   <div className='row d-flex flex-column bg-warning h-100 text-center'>
-                    <div className='bg-success flex-fill d-flex flex-row align-items-center'>
-                      <div className='col'>{Object.keys(user.answers).length}</div>
+                    <div className='bg-success flex-fill d-flex flex-row align-items-center justify-content-center'>
+                      {Object.keys(user.answers).length}
                     </div>
                     <div className='bg-danger '>
                       Answers
