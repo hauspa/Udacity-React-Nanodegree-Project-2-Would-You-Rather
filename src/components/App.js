@@ -14,6 +14,7 @@ import LoadingBar from 'react-redux-loading-bar'
 import { handleInitialData } from '../actions/shared'
 import { updateVotes } from '../actions/questions'
 import { addUserAnswer, addUserQuestion } from '../actions/users'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 class App extends Component {
 
@@ -56,33 +57,42 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <LoadingBar />
-          {this.props.loading === true
-            ? null
-            : this.props.loggedIn === true
-              ? (
-                <Fragment>
-                  <Navbar />
+      // TODO: go to Login, when users went on website using browser search bar
+      <Router>
+        <div>
+          <LoadingBar />
+            {this.props.loading === true
+              ? null
+              : this.props.loggedIn === true
+                ? (
+                  <Fragment>
+                    <Navbar />
+                    <div className='container'>
+                      <Switch>
+                        <Route exact path='/' component={Home} />
+                        <Route path='/login' component={Login} />
+                        <Route path='/logout' component={Logout} />
+                        <Route path='/add' component={NewQuestion} />
+                        <Route path='/leaderboard' component={Leaderboard} />
+                        <Route path='/questions/:id' component={Question} />
+                        <Route component={ErrorPage} />
+                      </Switch>
+                    </div>
+                  </Fragment>
+                )
+                : (
                   <div className='container'>
-                    {/* <Home /> */}
-                    {/* <Question /> */}
-                    {/* <NewQuestion /> */}
-                    {/* <Leaderboard /> */}
-                    <ErrorPage />
+                    <h1 className='text-center'>Welcome to Would You Rather...?</h1>
+                    <br></br>
+                    <br></br>
+                    <Login />
                   </div>
-                </Fragment>
-              )
-              : (
-                <div className='container'>
-                  <h1 className='text-center'>Welcome to Would You Rather...?</h1>
-                  <br></br>
-                  <br></br>
-                  <Login />
-                </div>
-              )
-          }
-      </div>
+                )
+            }
+        </div>
+    </Router>
+
+
         // (
         //     <div className="App">
         //       <header className="App-header">
@@ -107,8 +117,7 @@ class App extends Component {
         //         </header>
         //     </div>
         // )
-        // TODO: add 404 page for cases when website not available
-        // TODO: go to Login, when users went on website using browser search bar
+
     )
   }
 }
