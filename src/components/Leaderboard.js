@@ -28,7 +28,7 @@ class Leaderboard extends Component {
               //    {leaderIndex}) {user.name}: {user.questions.length + Object.keys(user.answers).length}
               // </li>
               <div key={user.id} className={'row mb-2 rounded border ' + (authedUser.id === user.id ? 'border-success' : 'border-light')}>
-                <div className='col bg-primary text-center p-5'>
+                <div className='col-1 bg-primary text-center p-5'>
                   {leaderIndex}
                 </div>
                 <div className='col bg-success'>
@@ -36,26 +36,34 @@ class Leaderboard extends Component {
                   {user.name}
                 </div>
                 <div className='col bg-info'>
-                  Questions: {user.questions.length}
+                  <div className='row d-flex flex-column bg-warning h-100 text-center'>
+                    <div className='bg-success flex-fill d-flex flex-row align-items-center'>
+                      <div className='col'>{user.questions.length}</div>
+                    </div>
+                    <div className='bg-danger '>
+                      Questions
+                    </div>
+                  </div>
                 </div>
                 <div className='col bg-warning'>
-                  Answers: {Object.keys(user.answers).length}
+                  <div className='row d-flex flex-column bg-warning h-100 text-center'>
+                    <div className='bg-success flex-fill d-flex flex-row align-items-center'>
+                      <div className='col'>{Object.keys(user.answers).length}</div>
+                    </div>
+                    <div className='bg-danger '>
+                      Answers
+                    </div>
+                  </div>
                 </div>
                 <div className='col bg-info'>
-                  <div className='row d-flex flex-column bg-warning' style={{ height: 100 + '%'}}>
-                    <div className='text-center bg-success flex-fill'>
+                  <div className='row d-flex flex-column bg-warning h-100 text-center'>
+                    <div className='bg-primary flex-fill d-flex flex-row align-items-center justify-content-center'>
                       {user.questions.length + Object.keys(user.answers).length}
                     </div>
-                    <div className='text-center bg-danger '>
+                    <div className='bg-danger '>
                       Total
                     </div>
                   </div>
-                  {/* <div className='row bg-primary align-self-end'>
-                    <div className='col text-center bg-danger'>
-                      Total
-                    </div>
-                  </div> */}
-                  {/* Total: {user.questions.length + Object.keys(user.answers).length} */}
                 </div>
               </div>
             )
