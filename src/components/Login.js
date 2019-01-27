@@ -46,6 +46,9 @@ class Login extends Component {
 
     // if user wanted to other page, can redirect there. if directly to Login, then going to Home
     let { from } = this.props.location.state || { from: { pathname: '/' } }
+    if(from.pathname === '/login' || from.pathname === '/logout') { // so that new user doesn't end up at /logout right after logging in
+      from.pathname = '/'
+    }
 
     if (shouldRedirect === true) {
       console.log('REDIRECTING to Home after loggin in')
