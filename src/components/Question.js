@@ -3,9 +3,10 @@ import { connect } from 'react-redux'
 import _ from 'lodash'
 import QuestionUnanswered from './QuestionUnanswered'
 import QuestionAnswered from './QuestionAnswered'
+// import { withRouter } from 'react-router-dom'
 
 // TODO: get param from URL later on w/Router
-let paramId = 'loxhs1bqm25b708cmbf3g' // = unanswered question
+// let paramId = 'loxhs1bqm25b708cmbf3g' // = unanswered question
 // let paramId = '6ni6ok3ym7mf1p33lnez' // = answered question
 
 
@@ -13,6 +14,7 @@ class Question extends Component {
 
   render() {
     let { question, alreadyAnswered } = this.props
+    let paramId = this.props.match.params.id
 
     return(
       <div>
@@ -20,9 +22,9 @@ class Question extends Component {
 
         <br></br>
 
-        {/* Gonna pass paramId & question via ownProps in Redux, so that can do the logic behind it just once instead of twice! */}
+        {/* // Gonna pass paramId & question via ownProps in Redux, so that can do the logic behind it just once instead of twice! */}
         {alreadyAnswered === true
-          ? <QuestionAnswered   paramId={paramId} question={question} />
+          ? <QuestionAnswered question={question} />
           : <QuestionUnanswered paramId={paramId} question={question} />
         }
 
@@ -31,19 +33,17 @@ class Question extends Component {
   }
 }
 
-function mapStateToProps({ questions, authedUser, users }) {
+function mapStateToProps({ questions, authedUser, users }, { match }) {
 
   // get loggedin user's answers keys, so that can see whether already answered or not
   let user = _.pick(users, authedUser.id)[authedUser.id]
   let answersKeys = Object.keys(user.answers)
+  let paramId = match.params.id
 
   return {
     question: _.pick(questions, paramId)[paramId],
     alreadyAnswered: _.includes(answersKeys, paramId),
     authedUser,
-    // JUST FOR TESTING, can delete again later!
-    users,
-    questions,
   }
 }
 

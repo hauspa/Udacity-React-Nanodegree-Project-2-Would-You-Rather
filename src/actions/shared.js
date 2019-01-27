@@ -19,6 +19,7 @@ export function handleNewQuestion(optionOneText, optionTwoText) {
   return (dispatch, getState) => {
 
     let { authedUser } = getState()
+    let qid = ''
 
     dispatch(showLoading())
 
@@ -29,13 +30,11 @@ export function handleNewQuestion(optionOneText, optionTwoText) {
     })
       .then((formattedQuestion) => {
         dispatch(addQuestion(formattedQuestion)) // add in Redux, questions object
-        return formattedQuestion.id // gotta return so that next .then() can use it!
+        qid = formattedQuestion.id // gotta return so that next .then() can use it OR save as property
+        return qid // gotta return so that next .then() can use it!
       })
-      .then((qid) => {
-        dispatch(addUserQuestion(authedUser.id, qid)) // add in Redux, users object
-        return qid
-      })
-      .then((qid) => {
+      .then(() => dispatch(addUserQuestion(authedUser.id, qid))) // add in Redux, users object
+      .then(() => {
           dispatch(hideLoading())
           return qid
       })

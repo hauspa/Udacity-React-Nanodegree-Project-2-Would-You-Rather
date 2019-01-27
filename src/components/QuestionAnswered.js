@@ -85,10 +85,9 @@ class QuestionAnswered extends Component {
   }
 }
 
-function mapStateToProps({ authedUser }, { paramId, question }) {
+function mapStateToProps({ authedUser }, { question }) {
   return {
     authedUser,
-    paramId,
     question, // seems like don't even have to include ownProps, as React just passes it on anyways.
   }
 }
