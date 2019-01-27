@@ -9,6 +9,7 @@ import Navbar from './Navbar'
 import Question from './Question'
 import NewQuestion from './NewQuestion'
 import Leaderboard from './Leaderboard'
+import ErrorPage from './ErrorPage'
 import LoadingBar from 'react-redux-loading-bar'
 import { handleInitialData } from '../actions/shared'
 import { updateVotes } from '../actions/questions'
@@ -67,7 +68,8 @@ class App extends Component {
                     {/* <Home /> */}
                     {/* <Question /> */}
                     {/* <NewQuestion /> */}
-                    <Leaderboard />
+                    {/* <Leaderboard /> */}
+                    <ErrorPage />
                   </div>
                 </Fragment>
               )
