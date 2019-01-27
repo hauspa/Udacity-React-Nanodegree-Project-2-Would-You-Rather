@@ -14,7 +14,10 @@ import LoadingBar from 'react-redux-loading-bar'
 import { handleInitialData } from '../actions/shared'
 import { updateVotes } from '../actions/questions'
 import { addUserAnswer, addUserQuestion } from '../actions/users'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
+
+
+let prefixForQuestions = '/questions/'
 
 class App extends Component {
 
@@ -56,41 +59,46 @@ class App extends Component {
   }
 
   render() {
+    let { loading, loggedIn, questions, qid } = this.props
     return (
       // TODO: go to Login, when users went on website using browser search bar
-      <Router>
-        <div>
-          <LoadingBar />
-            {this.props.loading === true
-              ? null
-              : this.props.loggedIn === true
-                ? (
-                  <Fragment>
-                    <Navbar />
-                    <div className='container'>
-                      <Switch>
-                        <Route exact path='/' component={Home} />
-                        <Route path='/login' component={Login} />
-                        <Route path='/logout' component={Logout} />
-                        <Route path='/add' component={NewQuestion} />
-                        <Route path='/leaderboard' component={Leaderboard} />
-                        <Route path='/questions/:id' component={Question} />
-                        <Route component={ErrorPage} />
-                      </Switch>
-                    </div>
-                  </Fragment>
-                )
-                : (
+      <div>
+        <LoadingBar />
+          {loading === true
+            ? null
+            : loggedIn === true
+              ? (
+                <Fragment>
+                  <Navbar />
                   <div className='container'>
-                    <h1 className='text-center'>Welcome to Would You Rather...?</h1>
-                    <br></br>
-                    <br></br>
-                    <Login />
+                    <Switch>
+                      <Route exact path='/' component={Home} />
+                      <Route path='/login' component={Login} />
+                      <Route path='/logout' component={Logout} />
+                      <Route path='/add' component={NewQuestion} />
+                      <Route path='/leaderboard' component={Leaderboard} />
+
+                      {/* make sure in Question that ID is valid */}
+                      {
+                        Object.keys(questions).includes(qid) &&
+                          <Route path={`${prefixForQuestions}:id`} component={Question} />
+                      }
+                      
+                      <Route component={ErrorPage} />
+                    </Switch>
                   </div>
-                )
-            }
-        </div>
-    </Router>
+                </Fragment>
+              )
+              : (
+                <div className='container'>
+                  <h1 className='text-center'>Welcome to Would You Rather...?</h1>
+                  <br></br>
+                  <br></br>
+                  <Login />
+                </div>
+              )
+          }
+      </div>
 
 
         // (
@@ -122,11 +130,15 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ users, questions, authedUser, }) {
+function mapStateToProps({ users, questions, authedUser, }, { location }) {
+  // match is only in props when component is passed on via <Route>, so gotta use location!
+
   return {
     loading: (Object.keys(users).length === 0 && users.constructor === Object) || (Object.keys(questions).length === 0 && questions.constructor === Object), // check whether data is already loaded
     loggedIn: authedUser !== null,
+    questions,
+    qid: location.pathname.substring(prefixForQuestions.length),
   }
 }
 
-export default connect(mapStateToProps)(App)
+export default withRouter(connect(mapStateToProps)(App))
