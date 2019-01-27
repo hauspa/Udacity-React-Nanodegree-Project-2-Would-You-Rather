@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleNewQuestion } from '../actions/shared'
+import { Redirect } from 'react-router-dom'
 
 class NewQuestion extends Component {
 
   state = {
     inputOne: '',
     inputTwo: '',
+    qid: ''
   }
 
   handleChange = (e) => {
@@ -26,10 +28,24 @@ class NewQuestion extends Component {
     let optionOneText = this.state.inputOne
     let optionTwoText = this.state.inputTwo
     this.props.dispatch(handleNewQuestion(optionOneText, optionTwoText))
+      .then((qid) => {
+        console.log('DUDE: ', qid)
+        this.setState((prevState) => ({
+          ...prevState,
+          qid: qid
+        }))
+      })
   }
 
   render() {
+
+    // after finishing adding the poll/question, go that specific question page!
+    if(this.state.qid !== '') {
+      return <Redirect to={`/questions/${this.state.qid}`} />
+    }
+
     return(
+
       // TODO: if one of the fields is empty, then show that input in red or make button disabled!
       <div>
         <br></br>

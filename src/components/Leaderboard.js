@@ -18,7 +18,6 @@ class Leaderboard extends Component {
     return(
       <div>
         <h3>Leaderboard</h3>
-        {/* // TODO: just do it as normal div and use styling to make it look better */}
         {/* <ul className='list-group'> */}
         <Fragment>
           {sortedUsers.map((user) => {
@@ -27,6 +26,7 @@ class Leaderboard extends Component {
               // <li key={user.id} className={ 'list-group-item mb-1 ' + (authedUser.id === user.id ? 'border border-success' : '') }>
               //    {leaderIndex}) {user.name}: {user.questions.length + Object.keys(user.answers).length}
               // </li>
+              // TODO: AuthedUser highlighted by color border!
               <div key={user.id} className={'row mb-2 rounded border ' + (authedUser.id === user.id ? 'border-success' : 'border-light')}>
                 <div className='col-1 bg-primary text-center p-5'>
                   {leaderIndex}
@@ -73,9 +73,6 @@ class Leaderboard extends Component {
         {/* // </ul> */}
       </Fragment>
       </div>
-      // TODO: Leaderboard UI -> ordered list
-      // TODO: sort by score
-      // TODO: AuthedUser highlighted by color border!
     )
   }
 }

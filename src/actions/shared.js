@@ -31,8 +31,14 @@ export function handleNewQuestion(optionOneText, optionTwoText) {
         dispatch(addQuestion(formattedQuestion)) // add in Redux, questions object
         return formattedQuestion.id // gotta return so that next .then() can use it!
       })
-      .then((qid) => dispatch(addUserQuestion(authedUser.id, qid))) // add in Redux, users object
-      .then(() => dispatch(hideLoading()))
+      .then((qid) => {
+        dispatch(addUserQuestion(authedUser.id, qid)) // add in Redux, users object
+        return qid
+      })
+      .then((qid) => {
+          dispatch(hideLoading())
+          return qid
+      })
   }
 }
 

@@ -4,17 +4,10 @@ import { NavLink, withRouter } from 'react-router-dom'
 
 class Navbar extends Component {
 
-  state = {
-    path: window.location.pathname
-  }
-
-  goToLogin = () => {
-    // TODO: go to Login Page for loggin
-  }
-
-
   render() {
+    let { authedUser } = this.props
     let { pathname } = this.props.location
+
     return(
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <NavLink className="navbar-brand" to="/">Would You Rather...?</NavLink>
@@ -27,18 +20,18 @@ class Navbar extends Component {
             <NavLink to="/add" activeClassName={ pathname === '/add' ? 'active' : '' } className="nav-item nav-link">Add Question</NavLink>
             <NavLink to="/leaderboard" activeClassName={ pathname === '/leaderboard' ? 'active' : '' } className="nav-item nav-link">Leaderboard</NavLink>
             </div>
-          </div>          
+          </div>
           <div className="navbar-nav navbar-right">
             {
               this.props.loggedIn === true
               ? (
                 <div className="navbar-brand navbar-right">
-                  <span>Hello, {this.props.authedUser.name}!</span>
-                  <img src={window.location.origin + this.props.authedUser.avatarPath} width="30" height="30" className="d-inline-block align-top rounded" alt="Profile Picture" />
-                  <button className="btn btn-outline-success" type="button" onClick={this.goToLogin}>Logout</button>
+                  <span>Hello, {authedUser.name}!</span>
+                  <img src={window.location.origin + authedUser.avatarPath} width="30" height="30" className="d-inline-block align-top rounded" alt="Profile Picture" />
+                  <NavLink to='/logout'><button className="btn btn-outline-success" type="button">Logout</button></NavLink>
                 </div>
               )
-              : <button className="btn btn-outline-success" type="button" onClick={this.goToLogin}>Login</button>
+              : <NavLink to='/login'><button className="btn btn-outline-success" type="button">Login</button></NavLink>
             }
           </div>
       </nav>

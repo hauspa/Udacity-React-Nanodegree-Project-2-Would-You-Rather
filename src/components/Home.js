@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import _ from 'lodash'
 
 class Home extends Component {
@@ -55,7 +56,7 @@ class Home extends Component {
 
         <div className='questions mx-auto'>
           {sortedQuestions.map((question) => (
-            <a key={question.id}>
+            <Link to={`/questions/${question.id}`} key={question.id}>
               <div className='row mt-4 border border-warning rounded'>
                 <div className='col'>
                   <div className='row bg-success'>
@@ -85,7 +86,7 @@ class Home extends Component {
                   </div>
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
