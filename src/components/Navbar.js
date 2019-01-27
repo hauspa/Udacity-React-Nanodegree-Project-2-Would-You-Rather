@@ -1,28 +1,33 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { NavLink, withRouter } from 'react-router-dom'
 
 class Navbar extends Component {
+
+  state = {
+    path: window.location.pathname
+  }
 
   goToLogin = () => {
     // TODO: go to Login Page for loggin
   }
 
-  // TODO: active state for nav link the current page! 
 
   render() {
+    let { pathname } = this.props.location
     return(
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="#">Would You Rather...?</a>
+        <NavLink className="navbar-brand" to="/">Would You Rather...?</NavLink>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            <a className="nav-item nav-link active" href="#">Home<span className="sr-only">(current)</span></a>
-            <a className="nav-item nav-link" href="#">Add Question</a>
-            <a className="nav-item nav-link" href="#">Leaderboard</a>
+            <NavLink exact to="/" activeClassName={ pathname === '/' ? 'active' : '' } className="nav-item nav-link">Home</NavLink>
+            <NavLink to="/add" activeClassName={ pathname === '/add' ? 'active' : '' } className="nav-item nav-link">Add Question</NavLink>
+            <NavLink to="/leaderboard" activeClassName={ pathname === '/leaderboard' ? 'active' : '' } className="nav-item nav-link">Leaderboard</NavLink>
             </div>
-          </div>
+          </div>          
           <div className="navbar-nav navbar-right">
             {
               this.props.loggedIn === true
@@ -49,4 +54,4 @@ function mapStateToProps({ authedUser }) {
   }
 }
 
-export default connect(mapStateToProps)(Navbar)
+export default withRouter(connect(mapStateToProps)(Navbar))
