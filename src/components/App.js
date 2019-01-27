@@ -69,11 +69,13 @@ class App extends Component {
             ? null
             : (
               <Switch >
-                <Route path='/login' component={Login} />
-                <ProtectedRoute exact path='/' component={Home} />
-                <ProtectedRoute path='/logout' component={Logout} />
-                <ProtectedRoute path='/add' component={NewQuestion} />
-                <ProtectedRoute path='/leaderboard' component={Leaderboard} />
+                {console.log('loggedin? ', loggedIn)}
+                <Route exact path='/login' component={Login} />
+                <ProtectedRoute exact path='/' component={Home} isLoggedIn={loggedIn} />
+                <ProtectedRoute exact path='/logout' component={Logout} />
+                <ProtectedRoute exact path='/add' component={NewQuestion} />
+                {/* <Route exact path='/add' component={NewQuestion} /> */}
+                <ProtectedRoute exact path='/leaderboard' component={Leaderboard} isLoggedIn={loggedIn} />
                 {/* make sure in Question that ID is valid */}
                 {
                   Object.keys(questions).includes(qid) &&

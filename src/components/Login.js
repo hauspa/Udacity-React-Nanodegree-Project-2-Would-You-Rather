@@ -34,23 +34,24 @@ class Login extends Component {
 
     // save in Redux store
     this.props.dispatch(loginAuthedUser(id, name, picture))
-      // .then(() => {
-      //   console.log('DONE WITH LOGGIN IN:')
-      //   // this.setState((prevState) => ({
-      //   //   ...prevState,
-      //   //   goToHome: true
-      //   // }))
-      //   console.log('GOING TO HOME')
-      // })
+    this.setState((prevState) => ({
+      ...prevState,
+      goToHome: true
+    }))
 
     // TODO: after LOGIN => send to HOME Component!
   }
 
   render() {
     let { users, loading } = this.props
+    let { selectedUser, goToHome } = this.state
 
-    if (this.state.goToHome === true) {
-      return <Redirect to='/' />
+    // if user wanted to other page, can redirect there. if directly to Login, then going to Home
+    let { from } = this.props.location.state || { from: { pathname: '/' } }
+
+    if (goToHome === true) {
+      console.log('REDIRECTING to Home after loggin in')
+      return <Redirect to={ from } />
     }
 
     return(
@@ -81,7 +82,7 @@ class Login extends Component {
                 }
                 <br></br>
                 <div className='row'>
-                  <button className="btn btn-outline-success mx-auto" type="button" onClick={this.login} disabled={!this.state.selectedUser.length > 0}>Login</button>
+                  <button className="btn btn-outline-success mx-auto" type="button" onClick={this.login} disabled={!selectedUser.length > 0}>Login</button>
                 </div>
               </Fragment>
             )
