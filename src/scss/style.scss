@@ -5,18 +5,24 @@
 }
 
 .questions{
-  width: 600px;
+  max-width: 600px;
 
   .questionBox {
     color: white;
     &:hover{
       text-decoration: none !important;
     }
+    .author{
+      font-size: 20px;
+    }
     .wouldRather{
       font-size: 26px;
     }
+    .option {
+      font-size: 26px;
+    }
     .or{
-      font-size: 44px;
+      font-size: 34px;
     }
   }
 }

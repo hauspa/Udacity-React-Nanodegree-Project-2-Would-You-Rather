@@ -5,7 +5,7 @@
 }
 
 .questions {
-  width: 600px;
+  max-width: 600px;
 }
 .questions .questionBox {
   color: white;
@@ -13,11 +13,17 @@
 .questions .questionBox:hover {
   text-decoration: none !important;
 }
+.questions .questionBox .author {
+  font-size: 20px;
+}
 .questions .questionBox .wouldRather {
   font-size: 26px;
 }
+.questions .questionBox .option {
+  font-size: 26px;
+}
 .questions .questionBox .or {
-  font-size: 44px;
+  font-size: 34px;
 }
 
 .form .or {

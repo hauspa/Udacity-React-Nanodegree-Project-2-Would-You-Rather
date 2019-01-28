@@ -52,53 +52,55 @@ class Home extends Component {
           </ul>
         </nav>
 
+
         <div className='questions mx-auto'>
           {sortedQuestions.map((question) => (
             <Link to={`/questions/${question.id}`} className='questionBox' key={question.id}>
-              <div className='questionBox row mt-4 border border-warning rounded text-center'>
-                <div className='col'>
-                  <div className='row bg-success align-items-center'>
-                    <div className='wouldRather col bg-warning flex-fill p-3'>
-                      Would You Rather...
-                    </div>
+            <div className='row mt-4 m-3 text-center border rounded'>
+              <div className='col'>
+                <div className='row bg-dark align-items-center'>
+                  <div className='wouldRather col p-3'>
+                    Would You Rather
                   </div>
-                  <div className='row bg-success'>
-                    <div className='option col-5 bg-primary'>
-                      <div className='row bg-info h-100 align-items-center'>
-                        <div className='col'>
-                          {question.optionOne.text}
-                        </div>
+                </div>
+                <div className='row bg-success'>
+                  <div className='option col-5 p-2'>
+                    <div className='row h-100 align-items-center'>
+                      <div className='col'>
+                        {question.optionOne.text}
                       </div>
                     </div>
-                    <div className='col-2 bg-danger'>
-                      <div className='row h-100 align-items-center'>
-                        <div className='or col flex-fill'>
-                          OR
-                        </div>
+                  </div>
+                  <div className='col-2 bg-danger'>
+                    <div className='row h-100 align-items-center'>
+                      <div className='or col'>
+                        OR
                       </div>
                     </div>
-                    <div className='option col-5'>
-                      {question.optionTwo.text}
+                  </div>
+                  <div className='option col-5 p-2'>
+                    <div className='row h-100 align-items-center'>
+                      <div className='col'>
+                        {question.optionTwo.text}
+                      </div>
                     </div>
                   </div>
-                  <div className='row'>
-                    {/* <div className='col'>
-                      by {question.author}
-                    </div> */}
-                    <div className='col bg-dark'>
-                      <div className='row h-100 d-flex flex-column p-2'>
-                        <div className='col mt-1'>
-                          <img src={window.location.origin + user.avatarURL} alt={user.name} width="40" height="40" className='rounded mr-2' />
-                        </div>
-                        <div className='col mt-1'>
-                          {question.author}
-                        </div>
+                </div>
+                <div className='row'>
+                  <div className='author col bg-dark'>
+                    <div className='row h-100 d-flex flex-column p-2'>
+                      <div className='col mt-1'>
+                        <img src={window.location.origin + user.avatarURL} alt={user.name} width="40" height="40" className='rounded mr-2' />
+                      </div>
+                      <div className='col mt-1'>
+                        {question.author}
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </Link>
+            </div>
+          </Link>
           ))}
         </div>
       </div>
