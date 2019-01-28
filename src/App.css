@@ -12,6 +12,10 @@
   font-size: 100px;
 }
 
+.loginCard {
+  border-width: 3px !important;
+}
+
 .App {
   text-align: center;
 }

@@ -12,12 +12,10 @@ class Login extends Component {
     'shouldRedirect': false
   }
 
-  handleChange = (e) => {
-    e.preventDefault()
-
-    let targetValue = e.target.value
+  handleChange = (id) => {
+    // save to selectedUser in local state
     this.setState((prevState) => ({
-      selectedUser: targetValue
+      selectedUser: id
     }))
   }
 
@@ -57,33 +55,45 @@ class Login extends Component {
 
     return(
       <div>
+        <br></br>
+        <br></br>
         <h3 className='text-center'>Please login:</h3>
+        <br></br>
         {
           loading === true // still loading
             ? null
             : (
               <Fragment>
-                {
-                  // TODO: Could use Bootstrap's Card Component!!
-
-                  Object.values(users).map((user) => (
-                    <div className="form-check text-center mt-3" key={user.id}>
-                      <input onChange={this.handleChange} className="form-check-input" type="radio" name="usersRadios" id={user.id} value={user.id} />
-                      <label className="form-check-label" htmlFor={user.id}>
-                        {user.name}
-                      </label>
-                    </div>
-                    // <div className="row align-items-center mt-1" key={user.id}>
-                    //   <div className="col bg-primary mx-auto">
-                    //     <img src={window.location.origin + user.avatarURL} width="50" height="50" className="d-inline-block align-top rounded" alt="Profile Picture" />
-                    //     <span>{user.name}</span>
-                    //   </div>
-                    // </div>
-                  ))
-                }
+                  <div className='row justify-content-center'>
+                      {
+                        Object.values(users).map((user) => (
+                          // <div className="form-check text-center mt-3" key={user.id}>
+                          //   <input onChange={this.handleChange} className="form-check-input" type="radio" name="usersRadios" id={user.id} value={user.id} />
+                          //   <label className="form-check-label" htmlFor={user.id}>
+                          //     {user.name}
+                          //   </label>
+                          // </div>
+                          <div key={user.id} className={'card m-2 loginCard ' + (user.id === this.state.selectedUser ? 'border-success' : '')} style={{ width: 14 + 'rem' , cursor: 'pointer' }} onClick={() => this.handleChange(user.id)}>
+                            <img className="card-img-top" src={user.avatarURL} alt="Card image cap" />
+                            <div className="card-body">
+                              {/* <h5 className="card-title">{user.name}</h5> */}
+                              <p className="card-text text-center">{user.name}</p>
+                              {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
+                            </div>
+                          </div>
+                          // <div className="row align-items-center mt-1" key={user.id}>
+                          //   <div className="col bg-primary mx-auto">
+                          //     <img src={window.location.origin + user.avatarURL} width="50" height="50" className="d-inline-block align-top rounded" alt="Profile Picture" />
+                          //     <span>{user.name}</span>
+                          //   </div>
+                          // </div>
+                        ))
+                      }
+                </div>
+                <br></br>
                 <br></br>
                 <div className='row'>
-                  <button className="btn btn-outline-success mx-auto" type="button" onClick={this.login} disabled={!selectedUser.length > 0}>Login</button>
+                  <button className="btn btn-lg btn-outline-success mx-auto" type="button" onClick={this.login} disabled={!selectedUser.length > 0}>Login</button>
                 </div>
               </Fragment>
             )
