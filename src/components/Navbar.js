@@ -11,16 +11,13 @@ class Navbar extends Component {
     return(
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <NavLink className="navbar-brand" to="/">Would You Rather...?</NavLink>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div className="navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            <NavLink exact to="/" activeClassName={ pathname === '/' ? 'active' : '' } className="nav-item nav-link">Home</NavLink>
-            <NavLink to="/add" activeClassName={ pathname === '/add' ? 'active' : '' } className="nav-item nav-link">Add Question</NavLink>
-            <NavLink to="/leaderboard" activeClassName={ pathname === '/leaderboard' ? 'active' : '' } className="nav-item nav-link">Leaderboard</NavLink>
-            </div>
+          <NavLink exact to="/" activeClassName={ pathname === '/' ? 'active' : '' } className="nav-item nav-link">Home</NavLink>
+          <NavLink to="/add" activeClassName={ pathname === '/add' ? 'active' : '' } className="nav-item nav-link">Add Question</NavLink>
+          <NavLink to="/leaderboard" activeClassName={ pathname === '/leaderboard' ? 'active' : '' } className="nav-item nav-link">Leaderboard</NavLink>
           </div>
+        </div>
           <div className="navbar-nav navbar-right">
             {
               this.props.loggedIn === true

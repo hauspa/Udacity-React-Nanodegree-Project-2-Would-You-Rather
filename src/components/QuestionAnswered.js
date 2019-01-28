@@ -49,10 +49,7 @@ class QuestionAnswered extends Component {
         <div className='row'>
           <div className='col-lg-5 align-self-center'>
             <div className={'card mx-auto text-center text-white ' + (votedOptionOne ? 'bg-success' : 'bg-danger')} style={{ width: 20 + 'em' }}>
-              {/* <img className="card-img-top" src="..." alt="Card image cap" /> */}
-              {/* <div className="card-header">{optionOnePercentage}%</div> */}
               <div className="card-body">
-                {/* <h5 className="card-title">Card title</h5> */}
                 <p className="card-text">{question.optionOne.text}</p>
               </div>
               <div className="card-footer">{this.displayUserVotes('optionOne', question.optionOne.votes.length)}</div>
@@ -75,10 +72,13 @@ class QuestionAnswered extends Component {
   }
 }
 
-function mapStateToProps({ authedUser }, { question }) {
+function mapStateToProps({ authedUser, questions, }, { match, }) {
+
+  let paramId = match.params.id
+
   return {
     authedUser,
-    question, // seems like don't even have to include ownProps, as React just passes it on anyways.
+    question: _.pick(questions, paramId)[paramId],
   }
 }
 

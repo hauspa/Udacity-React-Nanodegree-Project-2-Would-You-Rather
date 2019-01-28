@@ -7,8 +7,7 @@ import QuestionAnswered from './QuestionAnswered'
 class Question extends Component {
 
   render() {
-    let { question, alreadyAnswered } = this.props
-    let paramId = this.props.match.params.id
+    let { alreadyAnswered } = this.props
 
     return(
       <div>
@@ -19,8 +18,8 @@ class Question extends Component {
 
         {/* // Gonna pass paramId & question via ownProps in Redux, so that can do the logic behind it just once instead of twice! */}
         {alreadyAnswered === true
-          ? <QuestionAnswered question={question} />
-          : <QuestionUnanswered paramId={paramId} question={question} />
+          ? <QuestionAnswered />
+          : <QuestionUnanswered />
         }
       </div>
     )
@@ -29,15 +28,14 @@ class Question extends Component {
 
 function mapStateToProps({ questions, authedUser, users }, { match }) {
 
+  let paramId = match.params.id
+
   // get loggedin user's answers keys, so that can see whether already answered or not
   let user = _.pick(users, authedUser.id)[authedUser.id]
   let answersKeys = Object.keys(user.answers)
-  let paramId = match.params.id
 
   return {
-    question: _.pick(questions, paramId)[paramId],
     alreadyAnswered: _.includes(answersKeys, paramId),
-    authedUser,
   }
 }
 
