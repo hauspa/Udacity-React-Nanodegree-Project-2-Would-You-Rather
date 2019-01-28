@@ -14,12 +14,10 @@ Please use `npm install` and `npm start` to start the project.
 
 ## Learn More
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-
-## React
+### React
 
 Using React version 16.2.0 as the Udacity React Nanodegree uses this version.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ### Data of Users & Questions
 
