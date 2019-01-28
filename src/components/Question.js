@@ -28,7 +28,7 @@ class Question extends Component {
 
 function mapStateToProps({ questions, authedUser, users }, { match }) {
 
-  let paramId = match.params.id
+  let paramId = match.params.id // get question ID via URL Parameter
 
   // get loggedin user's answers keys, so that can see whether already answered or not
   let user = _.pick(users, authedUser.id)[authedUser.id]

@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import { handleVoteAnswer } from '../actions/shared'
+import React from 'react'
 import VoteCardUnanswered from './VoteCardUnanswered'
 
 const QuestionUnanswered = (props) => {
