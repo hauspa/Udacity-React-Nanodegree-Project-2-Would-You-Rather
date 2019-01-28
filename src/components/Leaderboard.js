@@ -38,7 +38,7 @@ class Leaderboard extends Component {
                     <div className='number flex-fill d-flex flex-row align-items-center justify-content-center'>
                       {user.questions.length}
                     </div>
-                    <div className='bg-dark pb-2'>
+                    <div className='pb-2'>
                       Questions
                     </div>
                   </div>
@@ -48,7 +48,7 @@ class Leaderboard extends Component {
                     <div className='number flex-fill d-flex flex-row align-items-center justify-content-center'>
                       {Object.keys(user.answers).length}
                     </div>
-                    <div className='bg-dark pb-2'>
+                    <div className='pb-2'>
                       Answers
                     </div>
                   </div>
@@ -58,7 +58,7 @@ class Leaderboard extends Component {
                     <div className='number flex-fill d-flex flex-row align-items-center justify-content-center'>
                       {user.questions.length + Object.keys(user.answers).length}
                     </div>
-                    <div className='bg-dark pb-2'>
+                    <div className='pb-2'>
                       Total
                     </div>
                   </div>
