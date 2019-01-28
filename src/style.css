@@ -1,0 +1,26 @@
+.navUser {
+  background: coral;
+  /* width: 250px; */
+  height: 50px;
+}
+
+.questions {
+  width: 600px;
+}
+.questions .questionBox {
+  color: black;
+}
+.questions .questionBox:hover {
+  text-decoration: none !important;
+}
+
+.or {
+  font-size: 100px;
+}
+
+.loginCard {
+  border-width: 3px !important;
+  font-size: 18px;
+}
+
+/*# sourceMappingURL=style.css.map */

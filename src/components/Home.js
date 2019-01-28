@@ -58,7 +58,7 @@ class Home extends Component {
               <div className='questionBox row mt-4 border border-warning rounded'>
                 <div className='col'>
                   <div className='row bg-success'>
-                    <div className='col p-3 bg-warning text-center'>
+                    <div className='col p-2 bg-warning text-center'>
                       Would You Rather...
                     </div>
                   </div>

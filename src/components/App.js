@@ -1,7 +1,15 @@
+// Modules
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux'
-import logo from '../logo.svg';
-import '../App.css';
+import { Route, Switch, withRouter } from 'react-router-dom'
+
+// Custom Styling
+import '../style.css';
+
+// Action
+import { handleInitialData } from '../actions/shared'
+
+// Components
 import Home from './Home'
 import Login from './Login'
 import Logout from './Logout'
@@ -12,12 +20,10 @@ import Leaderboard from './Leaderboard'
 import ErrorPage from './ErrorPage'
 import ProtectedRoute from './ProtectedRoute'
 import LoadingBar from 'react-redux-loading-bar'
-import { handleInitialData } from '../actions/shared'
-import { updateVotes } from '../actions/questions'
-import { addUserAnswer, addUserQuestion } from '../actions/users'
-import { Route, Switch, withRouter } from 'react-router-dom'
 
 
+
+// save as property, so that when changing URL anytime, there's no problem!
 let prefixForQuestions = '/questions/'
 
 class App extends Component {
@@ -26,43 +32,9 @@ class App extends Component {
     this.props.dispatch(handleInitialData())
   }
 
-  testingStore = () => {
-    let id = 'johndoe'
-    let questionId = '007blabla'
-    // testing ADD_QUESTION
-    // this.props.dispatch(addQuestion({
-    //   [questionId]: {
-    //     id: questionId,
-    //     author: 'jamesbond',
-    //     timestamp: 1467166872688,
-    //     optionOne: {
-    //       votes: ['jamesbond'],
-    //       text: 'dude',
-    //     },
-    //     optionTwo: {
-    //       votes: [],
-    //       text: 'bro'
-    //     }
-    //   },
-    // }))
-
-
-    // testing ADD_USER_QUESTIONS
-    this.props.dispatch(addUserQuestion(id, questionId))
-
-    // testing UPDATE_VOTES
-    this.props.dispatch(updateVotes(questionId, 'optionOne', id))
-    this.props.dispatch(updateVotes(questionId, 'optionTwo', 'Michael Scott'))
-  }
-
-  logTesting = () => {
-    console.log(this.props)
-  }
-
   render() {
     let { loading, loggedIn, questions, qid } = this.props
     return (
-      // TODO: go to Login, when users went on website using browser search bar
       <div>
         <LoadingBar />
           {loading === true
@@ -75,7 +47,6 @@ class App extends Component {
                   <ProtectedRoute exact path='/' component={Home} isLoggedIn={loggedIn} />
                   <ProtectedRoute exact path='/logout' component={Logout} isLoggedIn={loggedIn} />
                   <ProtectedRoute exact path='/add' component={NewQuestion} isLoggedIn={loggedIn} />
-                  {/* <Route exact path='/add' component={NewQuestion} /> */}
                   <ProtectedRoute exact path='/leaderboard' component={Leaderboard} isLoggedIn={loggedIn} />
                   {/* make sure in Question that ID is valid */}
                   {
@@ -86,66 +57,8 @@ class App extends Component {
                 </Switch>
               </Fragment>
             )
-            // : loggedIn === true
-            //   ? (
-            //     <Fragment>
-            //       <Navbar />
-            //       <div className='container'>
-            //         <Switch>
-                      // <Route exact path='/' component={Home} />
-                      // <Route path='/login' component={Login} />
-                      // <Route path='/logout' component={Logout} />
-                      // <Route path='/add' component={NewQuestion} />
-                      // <Route path='/leaderboard' component={Leaderboard} />
-                      //
-                      // {/* make sure in Question that ID is valid */}
-                      // {
-                      //   Object.keys(questions).includes(qid) &&
-                      //     <Route path={`${prefixForQuestions}:id`} component={Question} />
-                      // }
-                      // <Route component={ErrorPage} />
-            //         </Switch>
-            //       </div>
-            //     </Fragment>
-            //   )
-            //   : (
-            //     // <div className='container'>
-            //     //   <h1 className='text-center'>Welcome to Would You Rather...?</h1>
-            //     //   <br></br>
-            //     //   <br></br>
-            //     //   <Login />
-            //     // </div>
-            //     <div>LOGIN</div>
-            //   )
           }
       </div>
-
-
-        // (
-        //     <div className="App">
-        //       <header className="App-header">
-        //         <img src={logo} className="App-logo" alt="logo" />
-        //         <p>
-        //           Edit <code>src/App.js</code> and save to reload.
-        //         </p>
-        //         <p>Dude</p>
-        //         <a
-        //           className="App-link"
-        //           href="https://reactjs.org"
-        //           target="_blank"
-        //           rel="noopener noreferrer"
-        //           >
-        //             Learn React
-        //           </a>
-        //           <br></br>
-        //           <br></br>
-        //           <button onClick={this.testingStore}>TESTING</button>
-        //           <br></br>
-        //           <button onClick={this.logTesting}>LOG</button>
-        //         </header>
-        //     </div>
-        // )
-
     )
   }
 }

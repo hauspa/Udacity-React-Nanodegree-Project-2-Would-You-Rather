@@ -29,7 +29,6 @@ class NewQuestion extends Component {
     let optionTwoText = this.state.inputTwo
     this.props.dispatch(handleNewQuestion(optionOneText, optionTwoText))
       .then((qid) => {
-        console.log('DUDE: ', qid)
         this.setState((prevState) => ({
           ...prevState,
           qid: qid
@@ -39,9 +38,9 @@ class NewQuestion extends Component {
 
   render() {
 
-    // after finishing adding the poll/question, go that specific question page!
     if(this.state.qid !== '') {
-      return <Redirect to={`/questions/${this.state.qid}`} />
+      // return <Redirect to={`/questions/${this.state.qid}`} /> // after finishing adding the poll/question, go that specific question page!
+      return <Redirect to={`/`} /> // go to Home
     }
 
     return(
