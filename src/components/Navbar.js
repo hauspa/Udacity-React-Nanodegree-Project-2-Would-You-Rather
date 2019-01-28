@@ -27,7 +27,7 @@ class Navbar extends Component {
               ? (
                 <div className="navbar-brand navbar-right d-flex align-items-center">
                   <span style={{ fontSize: 16 + 'px' }}>Hello, {authedUser.name}!</span>
-                  <img src={window.location.origin + authedUser.avatarPath} width="34" height="34" className="d-inline-block align-top rounded mr-2 ml-2" alt="User Avatar" />
+                  <img src={authedUser.avatarPath} width="34" height="34" className="d-inline-block align-top rounded mr-2 ml-2" alt="User Avatar" />
                   {
                     pathname === '/logout' // don't show logout button on the Logout page
                       ? null

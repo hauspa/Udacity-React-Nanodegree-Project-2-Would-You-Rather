@@ -15,8 +15,9 @@ class Home extends Component {
     }))
   }
 
-  componentDidMount = () => {
-    // let { users }
+  showAvatar = (author) => {
+    let user = _.pick(this.props.users, author)[author]
+    return user.avatarURL
   }
 
   render() {
@@ -90,7 +91,7 @@ class Home extends Component {
                   <div className='author col bg-dark'>
                     <div className='row h-100 d-flex flex-column p-2'>
                       <div className='col mt-1'>
-                        <img src={window.location.origin + user.avatarURL} alt={user.name} width="40" height="40" className='rounded mr-2' />
+                        <img src={this.showAvatar(question.author)} alt={user.name} width="40" height="40" className='rounded mr-2' />
                       </div>
                       <div className='col mt-1'>
                         {question.author}

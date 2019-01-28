@@ -29,7 +29,7 @@ class Leaderboard extends Component {
                 </div>
                 <div className='col bg-dark'>
                   <div className='name row h-100 align-items-center justify-content-start'>
-                    <img src={window.location.origin + user.avatarURL} alt={user.name} width="60" height="60" className='rounded mr-3' />
+                    <img src={user.avatarURL} alt={user.name} width="60" height="60" className='rounded mr-3' />
                     {user.name}
                   </div>
                 </div>
