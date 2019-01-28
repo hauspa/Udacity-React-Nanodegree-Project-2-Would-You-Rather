@@ -41,7 +41,7 @@ class Home extends Component {
 
     return(
       <div>
-        <h1 className='text-center'>Home</h1>
+        <h1 className='text-center mt-3'>Home</h1>
 
         <br></br>
 
@@ -52,15 +52,13 @@ class Home extends Component {
           </ul>
         </nav>
 
-        <br></br>
-
         <div className='questions mx-auto'>
           {sortedQuestions.map((question) => (
-            <Link to={`/questions/${question.id}`} key={question.id}>
-              <div className='row mt-4 border border-warning rounded'>
+            <Link to={`/questions/${question.id}`} className='questionBox' key={question.id}>
+              <div className='questionBox row mt-4 border border-warning rounded'>
                 <div className='col'>
                   <div className='row bg-success'>
-                    <div className='col bg-warning text-center'>
+                    <div className='col p-3 bg-warning text-center'>
                       Would You Rather...
                     </div>
                   </div>
