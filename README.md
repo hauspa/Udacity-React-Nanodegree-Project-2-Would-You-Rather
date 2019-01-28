@@ -24,16 +24,13 @@ Using React version 16.2.0 as the Udacity React Nanodegree uses this version.
 ### Data of Users & Questions
 
 Using the file Udacity provided for this project.
-<br />
 Udacity states: 'Please keep in mind that new polls will not be accessible at their url because of the way the backend is set up in this application.'
 
-<br />
 
 ### Styling
 
 Using Bootstrap 4: https://getbootstrap.com/
 
-<br />
 
 ### User Avatar Profile Pictures
 
