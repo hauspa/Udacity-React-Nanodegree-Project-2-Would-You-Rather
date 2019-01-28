@@ -19,7 +19,7 @@ Please use `npm install` and `npm start` to start the project.
 Using React version 16.2.0 as the Udacity React Nanodegree uses this version.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### Data of Users & Questions
+### Backend Server
 
 Using the file Udacity provided for this project.
 Udacity states: 'Please keep in mind that new polls will not be accessible at their url because of the way the backend is set up in this application.'
