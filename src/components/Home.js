@@ -23,7 +23,6 @@ class Home extends Component {
   render() {
     let { questions, authedUser, users } = this.props
 
-    // TODO: instead of executing this every single rendering, maybe better if this is in component and using component state?
     // get current user object
     let userObject = _.pickBy(users, (user) => user.id === authedUser.id) // like filter for objects. could use _.pick() too
     let user = userObject[authedUser.id]

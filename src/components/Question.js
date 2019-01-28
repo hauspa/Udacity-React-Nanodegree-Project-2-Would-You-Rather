@@ -3,12 +3,6 @@ import { connect } from 'react-redux'
 import _ from 'lodash'
 import QuestionUnanswered from './QuestionUnanswered'
 import QuestionAnswered from './QuestionAnswered'
-// import { withRouter } from 'react-router-dom'
-
-// TODO: get param from URL later on w/Router
-// let paramId = 'loxhs1bqm25b708cmbf3g' // = unanswered question
-// let paramId = '6ni6ok3ym7mf1p33lnez' // = answered question
-
 
 class Question extends Component {
 
@@ -21,7 +15,6 @@ class Question extends Component {
         <br></br>
         <br></br>
         <h1 className='text-center'>Would You Rather...</h1>
-
         <br></br>
 
         {/* // Gonna pass paramId & question via ownProps in Redux, so that can do the logic behind it just once instead of twice! */}
@@ -29,7 +22,6 @@ class Question extends Component {
           ? <QuestionAnswered question={question} />
           : <QuestionUnanswered paramId={paramId} question={question} />
         }
-
       </div>
     )
   }

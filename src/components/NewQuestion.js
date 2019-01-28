@@ -39,13 +39,10 @@ class NewQuestion extends Component {
   render() {
 
     if(this.state.qid !== '') {
-      // return <Redirect to={`/questions/${this.state.qid}`} /> // after finishing adding the poll/question, go that specific question page!
       return <Redirect to={`/`} /> // go to Home
     }
 
     return(
-
-      // TODO: if one of the fields is empty, then show that input in red or make button disabled!
       <div>
         <br></br>
         <h3 className='text-center'>Add a new question</h3>

@@ -60,26 +60,16 @@ class QuestionAnswered extends Component {
           </div>
           <div className='col-lg-2 text-center align-self-center or'>
             or
-            {/* <p className='align-self-center bg-secondary'>OR</p> */}
-            {/* <div className='row bg-success align-self-center'>
-            <div className='col align-self-center'>
-            <span className='bg-danger'>OR</span>
           </div>
-        </div> */}
-      </div>
-      <div className='col-lg-5 align-self-center'> {/* offset-md-2 */}
-      <div className={'card mx-auto text-center text-white ' + (votedOptionOne ? 'bg-danger' : 'bg-success')} style={{ width: 20 + 'em' }}>
-        {/* <img className="card-img-top" src="..." alt="Card image cap" /> */}
-        {/* <div className="card-header">{optionTwoPercentage}%</div> */}
-        <div className="card-body">
-          {/* {question.} */}
-          {/* <h5 className="card-title">{question.optionTwo.text}</h5> */}
-          <p className="card-text">{question.optionTwo.text}</p>
+          <div className='col-lg-5 align-self-center'>
+            <div className={'card mx-auto text-center text-white ' + (votedOptionOne ? 'bg-danger' : 'bg-success')} style={{ width: 20 + 'em' }}>
+              <div className="card-body">
+                <p className="card-text">{question.optionTwo.text}</p>
+              </div>
+              <div className="card-footer">{this.displayUserVotes('optionTwo', question.optionTwo.votes.length)}</div>
+            </div>
+          </div>
         </div>
-        <div className="card-footer">{this.displayUserVotes('optionTwo', question.optionTwo.votes.length)}</div>
-      </div>
-    </div>
-  </div>
       </div>
     )
   }

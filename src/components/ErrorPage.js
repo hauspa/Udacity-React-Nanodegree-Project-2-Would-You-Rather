@@ -17,6 +17,4 @@ class ErrorPage extends Component {
   }
 }
 
-// TODO: make URL in search bar to /404!!! => but by using history.push here, it might create an infinite loop
-
 export default ErrorPage
