@@ -63,7 +63,7 @@ class Home extends Component {
                     Would You Rather
                   </div>
                 </div>
-                <div className='row bg-success'>
+                <div className='row bg-primary'>
                   <div className='option col-5 p-2'>
                     <div className='row h-100 align-items-center'>
                       <div className='col'>

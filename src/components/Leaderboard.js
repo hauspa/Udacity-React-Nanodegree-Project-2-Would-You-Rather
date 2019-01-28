@@ -28,14 +28,14 @@ class Leaderboard extends Component {
                   </div>
                 </div>
                 <div className='col bg-dark'>
-                  <div className='row h-100 align-items-center justify-content-start'>
-                    <img src={window.location.origin + user.avatarURL} alt={user.name} width="50" height="50" className='rounded mr-2' />
+                  <div className='name row h-100 align-items-center justify-content-start'>
+                    <img src={window.location.origin + user.avatarURL} alt={user.name} width="60" height="60" className='rounded mr-3' />
                     {user.name}
                   </div>
                 </div>
                 <div className='col bg-dark'>
                   <div className='row d-flex flex-column h-100 text-center'>
-                    <div className='number flex-fill d-flex flex-row align-items-center justify-content-center'>
+                    <div className='number pt-1 d-flex flex-row align-items-center justify-content-center'>
                       {user.questions.length}
                     </div>
                     <div className='pb-2'>
@@ -45,7 +45,7 @@ class Leaderboard extends Component {
                 </div>
                 <div className='col bg-dark'>
                   <div className='row d-flex flex-column h-100 text-center'>
-                    <div className='number flex-fill d-flex flex-row align-items-center justify-content-center'>
+                    <div className='number pt-1 d-flex flex-row align-items-center justify-content-center'>
                       {Object.keys(user.answers).length}
                     </div>
                     <div className='pb-2'>
@@ -55,7 +55,7 @@ class Leaderboard extends Component {
                 </div>
                 <div className='col bg-dark'>
                   <div className='row d-flex flex-column h-100 text-center'>
-                    <div className='number flex-fill d-flex flex-row align-items-center justify-content-center'>
+                    <div className='number pt-1 d-flex flex-row align-items-center justify-content-center'>
                       {user.questions.length + Object.keys(user.answers).length}
                     </div>
                     <div className='pb-2'>

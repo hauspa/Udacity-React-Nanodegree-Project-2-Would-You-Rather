@@ -18,7 +18,9 @@ class Question extends Component {
 
     return(
       <div>
-        <h3 className='text-center'>Would You Rather...</h3>
+        <br></br>
+        <br></br>
+        <h1 className='text-center'>Would You Rather...</h1>
 
         <br></br>
 
