@@ -48,7 +48,6 @@ class Login extends Component {
     }
 
     if (shouldRedirect === true) {
-      console.log('REDIRECTING to Home after loggin in')
       return <Redirect to={ from } />
     }
 
