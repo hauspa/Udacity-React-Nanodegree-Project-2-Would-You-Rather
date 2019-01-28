@@ -82,11 +82,11 @@ class Home extends Component {
                       by {question.author}
                     </div> */}
                     <div className='col bg-dark'>
-                      <div className='row h-100 align-items-center justify-content-center text-center'>
-                        <div className='col'>
-                          <img src={window.location.origin + user.avatarURL} alt={user.name} width="50" height="50" className='rounded mr-2' />
+                      <div className='row h-100 d-flex flex-column text-center p-2'>
+                        <div className='col mt-1'>
+                          <img src={window.location.origin + user.avatarURL} alt={user.name} width="40" height="40" className='rounded mr-2' />
                         </div>
-                        <div className='col'>
+                        <div className='col mt-1'>
                           {question.author}
                         </div>
                       </div>

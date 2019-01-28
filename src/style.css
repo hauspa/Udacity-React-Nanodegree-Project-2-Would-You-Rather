@@ -8,7 +8,7 @@
   width: 600px;
 }
 .questions .questionBox {
-  color: black;
+  color: white;
 }
 .questions .questionBox:hover {
   text-decoration: none !important;
