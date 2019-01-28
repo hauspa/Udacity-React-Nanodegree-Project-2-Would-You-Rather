@@ -47,8 +47,8 @@ class Home extends Component {
 
         <nav>
           <ul className="pagination pagination-lg justify-content-center">
-            <li className={"page-item " + (this.state.showUnanswered ? 'active' : '')} onClick={() => this.changePagination(true)}><a className="page-link">Unanswered questions</a></li>
-            <li className={"page-item " + (this.state.showUnanswered ? '' : 'active')} onClick={() => this.changePagination(false)}><a className="page-link">Answered questions</a></li>
+            <li className={"page-item " + (this.state.showUnanswered ? 'active' : '')} onClick={() => this.changePagination(true)}><button className="page-link">Unanswered questions</button></li>
+            <li className={"page-item " + (this.state.showUnanswered ? '' : 'active')} onClick={() => this.changePagination(false)}><button className="page-link">Answered questions</button></li>
           </ul>
         </nav>
 

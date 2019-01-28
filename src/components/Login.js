@@ -67,7 +67,7 @@ class Login extends Component {
                       {
                         Object.values(users).map((user) => (
                           <div key={user.id} className={'card m-2 loginCard ' + (user.id === this.state.selectedUser ? 'border-success' : '')} style={{ width: 14 + 'rem' , cursor: 'pointer' }} onClick={() => this.handleChange(user.id)}>
-                            <img className="card-img-top" src={user.avatarURL} alt="Card image cap" />
+                            <img className="card-img-top" src={user.avatarURL} alt="User Avatar" />
                             <div className="card-body">
                               {/* <h5 className="card-title">{user.name}</h5> */}
                               <p className="card-text text-center">{user.name}</p>

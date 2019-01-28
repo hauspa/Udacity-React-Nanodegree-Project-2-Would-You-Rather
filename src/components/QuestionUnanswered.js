@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import _ from 'lodash'
 import { handleVoteAnswer } from '../actions/shared'
 
 class QuestionUnanswered extends Component {
@@ -60,7 +59,7 @@ class QuestionUnanswered extends Component {
   }
 }
 
-function mapStateToProps({ }, { paramId, question }) {
+function mapStateToProps(state, { paramId, question }) {
   return {
     paramId,
     question,

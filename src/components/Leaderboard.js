@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import _ from 'lodash'
 
 class Leaderboard extends Component {
 
