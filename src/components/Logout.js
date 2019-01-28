@@ -13,10 +13,13 @@ class Logout extends Component {
 
     return(
       <div>
-        <p>authedUser: {authedUser.name || "NOBODY"}</p> {/* authedUser.id doesn't work, because at that point it's still null!!!! not an object yet!!! */}
-        <h4>{authedUser.name}, are you sure you want to logout?</h4>
         <br></br>
-        <button className="btn btn-outline-success" type="button" onClick={this.logout}>Logout</button>
+        <br></br>
+        <h3 className='text-center'>{authedUser.name}, are you sure you want to logout?</h3>
+        <br></br>
+        <div className='row'>
+          <button className="btn btn-lg btn-outline-success mx-auto" type="button" onClick={this.logout}>Logout</button>
+        </div>
       </div>
     )
   }
