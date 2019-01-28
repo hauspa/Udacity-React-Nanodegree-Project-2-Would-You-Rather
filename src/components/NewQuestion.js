@@ -67,7 +67,7 @@ class NewQuestion extends Component {
           <br></br>
 
           <div className='row'>
-            <div className='col text-center' style={{ fontSize: 50 + 'px' }}>
+            <div className='col text-center'>
               or
             </div>
           </div>

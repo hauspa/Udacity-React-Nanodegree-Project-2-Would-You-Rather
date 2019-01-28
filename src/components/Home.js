@@ -55,34 +55,38 @@ class Home extends Component {
         <div className='questions mx-auto'>
           {sortedQuestions.map((question) => (
             <Link to={`/questions/${question.id}`} className='questionBox' key={question.id}>
-              <div className='questionBox row mt-4 border border-warning rounded'>
+              <div className='questionBox row mt-4 border border-warning rounded text-center'>
                 <div className='col'>
-                  <div className='row bg-success'>
-                    <div className='col p-2 bg-warning text-center'>
+                  <div className='row bg-success align-items-center'>
+                    <div className='wouldRather col bg-warning flex-fill p-3'>
                       Would You Rather...
                     </div>
                   </div>
-                  <div className='row'>
-                    <div className='col-5 bg-secondary text-center'>
-                      {question.optionOne.text}
-                    </div>
-                    <div className='col-2 bg-danger text-center'>
-                      <div className='row bg-warning'>
-                        <div className='col bg-success align-items-end'>
-                          <span className="">OR</span>
+                  <div className='row bg-success'>
+                    <div className='option col-5 bg-primary'>
+                      <div className='row bg-info h-100 align-items-center'>
+                        <div className='col'>
+                          {question.optionOne.text}
                         </div>
                       </div>
                     </div>
-                    <div className='col-5 bg-primary text-center'>
+                    <div className='col-2 bg-danger'>
+                      <div className='row h-100 align-items-center'>
+                        <div className='or col flex-fill'>
+                          OR
+                        </div>
+                      </div>
+                    </div>
+                    <div className='option col-5'>
                       {question.optionTwo.text}
                     </div>
                   </div>
                   <div className='row'>
-                    {/* <div className='col text-center'>
+                    {/* <div className='col'>
                       by {question.author}
                     </div> */}
                     <div className='col bg-dark'>
-                      <div className='row h-100 d-flex flex-column text-center p-2'>
+                      <div className='row h-100 d-flex flex-column p-2'>
                         <div className='col mt-1'>
                           <img src={window.location.origin + user.avatarURL} alt={user.name} width="40" height="40" className='rounded mr-2' />
                         </div>
