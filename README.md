@@ -32,3 +32,7 @@ Using Bootstrap 4: https://getbootstrap.com/
 ### User Avatar Profile Pictures
 
 Importing the pictures from https://randomuser.me.
+
+
+### License
+GNU AGPLv3
