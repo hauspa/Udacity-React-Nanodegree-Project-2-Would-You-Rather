@@ -34,5 +34,5 @@ Using Bootstrap 4: https://getbootstrap.com/
 Importing the pictures from https://randomuser.me.
 
 
-### License
+## License
 GNU AGPLv3
