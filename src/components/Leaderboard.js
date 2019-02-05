@@ -7,7 +7,7 @@ class Leaderboard extends Component {
     let { authedUser, users } = this.props
 
     let sortedUsers = Object.values(users).sort((a,b) => (Object.keys(b.answers).length + b.questions.length) - (Object.keys(a.answers).length + a.questions.length))
-    let leaderIndex = 0 // because ordered list doesn't work with Bootstrap
+    let leaderIndex = 0 // because ordered list doesn't work with Bootstrap, gotta make index myself
 
     return(
       <div>
@@ -17,7 +17,7 @@ class Leaderboard extends Component {
         <br></br>
         <div className='mx-auto' style={{ maxWidth: 1000 + 'px' }}>
           {sortedUsers.map((user) => {
-            leaderIndex++ // because ordered list doesn't work with Bootstrap
+            leaderIndex++ // because ordered list doesn't work with Bootstrap, gotta make index myself
             return (
               <div key={user.id} className={'leaderboard row mb-2 rounded border ' + (authedUser.id === user.id ? 'border-success' : 'border-dark')}>
                 <div className='col-1 bg-dark'>
