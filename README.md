@@ -17,7 +17,6 @@ Please use `npm install` and `npm start` to start the project.
 ### React
 
 Using React version 16.2.0 as the Udacity React Nanodegree uses this version.
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ### Backend Server
 
@@ -33,3 +32,7 @@ Using Bootstrap 4: https://getbootstrap.com/
 ### User Avatar Profile Pictures
 
 Importing the pictures from https://randomuser.me.
+
+
+### License
+GNU AGPLv3
