@@ -1,8 +1,9 @@
 # Project Description
 
-Project Number 2 for Udacity's React Nanodegree, with a focus on Redux.
+A web app to show and create polls in the form of "Would You Rather?". 
+The user has to be logged in to actively participate in the app. After voting in the poll, the user can see the statistics of the poll votes.
 
-App to show and create polls using React & Redux.
+A project for Udacity's React Nanodegree with a focus on React and Redux.
 
 <br />
 
